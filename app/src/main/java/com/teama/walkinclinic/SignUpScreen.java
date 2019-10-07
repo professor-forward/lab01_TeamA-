@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.content.Intent;
 
 public class SignUpScreen extends AppCompatActivity {
 
@@ -36,6 +37,17 @@ public class SignUpScreen extends AppCompatActivity {
 
     private void SignUp()
     {
+        String firstName = firstNameField.getText().toString();
+        String lastName = firstNameField.getText().toString();
+        String emailAddress = emailAddressField.getText().toString();
+        String password = passwordField.getText().toString();
 
+        // check if sign up info is correct
+        // create a new patient and add them to fire base
+
+
+        // go back to login screen
+        //Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        //startActivity(intent);
     }
 }

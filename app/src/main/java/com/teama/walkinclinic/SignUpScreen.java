@@ -37,10 +37,12 @@ public class SignUpScreen extends AppCompatActivity {
 
     private void SignUp()
     {
+        /*
         String firstName = firstNameField.getText().toString();
         String lastName = firstNameField.getText().toString();
         String emailAddress = emailAddressField.getText().toString();
         String password = passwordField.getText().toString();
+        */
 
         // check if sign up info is correct
         // create a new patient and add them to fire base

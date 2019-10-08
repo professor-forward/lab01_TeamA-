@@ -47,9 +47,8 @@ public class SignUpScreen extends AppCompatActivity {
         // check if sign up info is correct
         // create a new patient and add them to fire base
 
-
         // go back to login screen
-        //Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-        //startActivity(intent);
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intent);
     }
 }

@@ -30,19 +30,17 @@ public class SignUpScreen extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SignUp();
+                String firstName = firstNameField.getText().toString();
+                String lastName = firstNameField.getText().toString();
+                String emailAddress = emailAddressField.getText().toString();
+                String password = passwordField.getText().toString();
+                SignUp(firstName,lastName,emailAddress,password);
             }
         });
     }
 
-    private void SignUp()
+    private void SignUp(String firstName, String lastName, String emailAddress, String password)
     {
-        /*
-        String firstName = firstNameField.getText().toString();
-        String lastName = firstNameField.getText().toString();
-        String emailAddress = emailAddressField.getText().toString();
-        String password = passwordField.getText().toString();
-        */
 
         // check if sign up info is correct
         // create a new patient and add them to fire base

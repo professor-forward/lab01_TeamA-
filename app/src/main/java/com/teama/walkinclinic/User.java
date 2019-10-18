@@ -6,6 +6,7 @@ public abstract class User
     protected String lastName;
     protected String emailAddress;
     protected String password;
+    protected String id;
 
     public String getFirstName()
     {
@@ -25,5 +26,10 @@ public abstract class User
     public String getPassword()
     {
         return password;
+    }
+
+    public String getId()
+    {
+        return id;
     }
 }

@@ -67,7 +67,8 @@
         android:typeface="normal"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/PasswordField"
-        tools:layout_editor_absoluteX="147dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
 
     <EditText

@@ -11,9 +11,9 @@
 
     <gradient
         android:centerX="50%"
-        android:centerColor="#FFFFFFF"
-        android:startColor="#FFFFFFF"
-        android:endColor="#FFFFFFF"
+        android:centerColor="#0FFFFFFF"
+        android:startColor="#0FFFFFFF"
+        android:endColor="#0FFFFFFF"
         android:type="linear"
         />
 

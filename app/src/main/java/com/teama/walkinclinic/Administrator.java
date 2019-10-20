@@ -1,6 +1,6 @@
 package com.teama.walkinclinic;
 
-public class Administrator extends User {
+public class Administrator {
 
     public Administrator(){}
 

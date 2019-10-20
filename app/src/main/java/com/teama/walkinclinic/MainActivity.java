@@ -48,11 +48,21 @@ public class MainActivity extends AppCompatActivity {
         logInButton = (Button)findViewById(R.id.btnLogIn);
         toSignUpButton = (Button)findViewById(R.id.btnToSignUp);
 
+
+
+
+
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String emailAddress = emailAddressField.getText().toString();
                 String password = passwordField.getText().toString();
+
+                if(emailAddress.equals("admin") && password.equals("5T5ptQ"))
+                {
+                    Intent s = new Intent(getApplicationContext(), AdministratorScreen.class);
+                    startActivity(s);
+                }
 
                 auth.signInWithEmailAndPassword(emailAddress, password)
                         .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
@@ -60,42 +70,27 @@ public class MainActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()){
                                     FirebaseUser user = auth.getInstance().getCurrentUser();
-                                    final String uid = user.getUid();//might need to fix
-
-
+                                    final String uid = user.getUid();
 
                                     users.addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            if(dataSnapshot.child("Users").child("patient").child(uid).exists()){
+                                            if(dataSnapshot.child("patient").child(uid).exists()){
                                                 Intent s = new Intent(getApplicationContext(), PatientScreen.class);
+                                                s.putExtra("uid",uid);
                                                 startActivity(s);
                                             }
-                                            else if(dataSnapshot.child("Users").child("employee").child(uid).exists()){
+                                            else if(dataSnapshot.child("employee").child(uid).exists()){
                                                 Intent s = new Intent(getApplicationContext(), EmployeeScreen.class);
-                                                startActivity(s);
-                                            }
-                                            else{
-                                                Intent s = new Intent(getApplicationContext(), AdministratorScreen.class);
+                                                s.putExtra("uid",uid);
                                                 startActivity(s);
                                             }
                                         }
-
-
                                         @Override
                                         public void onCancelled(@NonNull DatabaseError databaseError) {
                                             //not needed
                                         }
                                     });
-
-
-
-
-
-
-
-
-
                                 } else{
                                     Toast.makeText(MainActivity.this, "Incorrect login credentials", Toast.LENGTH_SHORT).show();
                                 }
@@ -116,7 +111,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //username: admin
+        //pwd: 5T5ptQ
         FirebaseUser currentUser = auth.getCurrentUser();
+
+        users.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(!(dataSnapshot.child("admin").exists())){
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 }

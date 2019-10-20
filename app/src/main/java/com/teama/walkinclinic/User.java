@@ -5,7 +5,7 @@ public abstract class User
     protected String firstName;
     protected String lastName;
     protected String emailAddress;
-    protected String iD;
+
 
     public User(String firstName, String lastName, String emailAddress){
         this.firstName = firstName;
@@ -29,7 +29,6 @@ public abstract class User
         return emailAddress;
     }
 
-    public String getiD(){return iD;}
 
 
     public void setFirstName(String firstName) {this.firstName = firstName;}
@@ -41,5 +40,4 @@ public abstract class User
         this.emailAddress = emailAddress;
     }
 
-    public void setiD(String iD){this.iD = iD;}
 }

@@ -8,7 +8,28 @@
     tools:context=".SignUpScreen">
 
     <Button
-        android:id="@+id/SignUpButton"
+        android:id="@+id/btnToLogIn"
+        android:layout_width="116dp"
+        android:layout_height="69dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/colourbuttonsquare"
+        android:shadowColor="#A8A8A8"
+        android:text="Log In"
+        android:textColor="@color/colorAccent"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnSignUp"
         android:layout_width="200dp"
         android:layout_height="80dp"
         android:layout_alignParentStart="true"
@@ -17,13 +38,13 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/colourbutton"
         android:text="Sign Up"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
 
@@ -81,14 +102,14 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="72dp"
+        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="Enter Password"
         android:inputType="textPassword"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:typeface="normal"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/SignUpButton"
+        app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
@@ -123,11 +144,11 @@
         android:text="A-"
         android:textColor="@color/colorAccent"
         android:textSize="100sp"
-        app:layout_constraintBottom_toTopOf="@+id/FirstNameField"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.41" />
+        app:layout_constraintVertical_bias="0.231" />
 
     <TextView
         android:id="@+id/textView5"
@@ -138,7 +159,20 @@
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/FirstNameField"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="143dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="533dp"
+        android:layout_marginBottom="174dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

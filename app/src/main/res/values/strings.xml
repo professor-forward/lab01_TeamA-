@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">WalkInClinic</string>
+    <string-array name ="usertype">
+        <item>patient</item>
+        <item>employee</item>
+    </string-array>
 </resources>

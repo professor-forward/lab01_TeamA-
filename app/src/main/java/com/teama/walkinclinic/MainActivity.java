@@ -7,13 +7,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView emailAddressField;
     private TextView passwordField;
     private Button logInButton;
-    private Button signUpButton;
+    private Button toSignUpButton;
+
+    FirebaseDatabase database;
+    DatabaseReference accounts;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         emailAddressField = (TextView)findViewById(R.id.EmailAddressField);
         passwordField = (TextView)findViewById(R.id.PasswordField);
         logInButton = (Button)findViewById(R.id.LogInButton);
-        signUpButton = (Button)findViewById(R.id.SignUpButton);
+        toSignUpButton = (Button)findViewById(R.id.btnToSignUp);
 
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,10 +45,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
+        toSignUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LoadSignUpScreen();
+                Intent s = new Intent(getApplicationContext(), SignUpScreen.class);
+                startActivity(s);
             }
         });
     }
@@ -48,8 +60,32 @@ public class MainActivity extends AppCompatActivity {
         startActivity(newIntent);
     }
 
-    private void LogIn(String emailAddress, String password)
+    private void LogIn(final String emailAddressField, final String passwordField)
     {
-        // fetch information from fire base and verify with input data
+        accounts.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot){
+                if(dataSnapshot.child(emailAddressField).exists()){
+                    if(!emailAddressField.isEmpty()){
+                        User login = dataSnapshot.child(emailAddressField).getValue(User.class);
+                        if(login.getPassword().equals(passwordField)){
+                            Toast.makeText(MainActivity.this,"Succesful Login", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(MainActivity.this, "Email or Password is Wrong", Toast.LENGTH_SHORT).show();
+                        }
+                        }
+                    else{
+                        Toast.makeText(MainActivity.this, "Email is not registered", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError){
+            //check online
+            }
+
+        });
     }
 }

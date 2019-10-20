@@ -43,9 +43,9 @@ public class MainActivity extends AppCompatActivity {
         users = database.getReference("Users");
         auth = FirebaseAuth.getInstance();
 
-        emailAddressField = (EditText)findViewById(R.id.EmailAddressField);
-        passwordField = (EditText)findViewById(R.id.edtPassword);
-        logInButton = (Button)findViewById(R.id.LogInButton);
+        emailAddressField = (EditText)findViewById(R.id.edtLogInEmailAddress);
+        passwordField = (EditText)findViewById(R.id.edtLogInPassword);
+        logInButton = (Button)findViewById(R.id.btnLogIn);
         toSignUpButton = (Button)findViewById(R.id.btnToSignUp);
 
         logInButton.setOnClickListener(new View.OnClickListener() {
@@ -67,11 +67,11 @@ public class MainActivity extends AppCompatActivity {
                                     users.addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            if(dataSnapshot.child("patient").child(uid).exists()){
+                                            if(dataSnapshot.child("Users").child("patient").child(uid).exists()){
                                                 Intent s = new Intent(getApplicationContext(), PatientScreen.class);
                                                 startActivity(s);
                                             }
-                                            else if(dataSnapshot.child("employee").child(uid).exists()){
+                                            else if(dataSnapshot.child("Users").child("employee").child(uid).exists()){
                                                 Intent s = new Intent(getApplicationContext(), EmployeeScreen.class);
                                                 startActivity(s);
                                             }

@@ -3,46 +3,40 @@ package com.teama.walkinclinic;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-import android.content.Intent;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 
-import com.google.firebase.database.ChildEventListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 
 public class SignUpScreen extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference users;
+    FirebaseAuth auth;
 
-    private EditText firstNameField;
-    private EditText lastNameField;
-    private EditText emailAddressField;
-    private EditText passwordField;
+
+    private EditText edtFirstName;
+    private EditText edtLastName;
+    private EditText edtEmailAddress;
+    private EditText edtPassword;
     private Button btnSignUp;
     private Button toLogInButton;
     private Spinner spinner;
-
-
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,50 +45,74 @@ public class SignUpScreen extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         users = database.getReference("Users");
+        auth = FirebaseAuth.getInstance();
 
-        firstNameField = (EditText) findViewById(R.id.FirstNameField);
-        lastNameField = (EditText) findViewById(R.id.LastNameField);
-        emailAddressField = (EditText) findViewById(R.id.EnterEmailAddress);
-        passwordField = (EditText) findViewById(R.id.PasswordField);
+        edtFirstName = (EditText) findViewById(R.id.edtFirstName);
+        edtLastName = (EditText) findViewById(R.id.edtLastName);
+        edtEmailAddress = (EditText) findViewById(R.id.edtEmailAddress);
+        edtPassword = (EditText) findViewById(R.id.edtPassword);
 
-        btnSignUp = (Button) findViewById(R.id.btnSignUp);
 
-        toLogInButton = (Button) findViewById(R.id.btnToLogIn);
         spinner = (Spinner) findViewById(R.id.spinner);
 
 
+        toLogInButton = (Button) findViewById(R.id.btnToLogIn);
+        btnSignUp = (Button) findViewById(R.id.btnSignUp);
 
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String firstName = firstNameField.getText().toString();
-                String lastName = lastNameField.getText().toString();
-                String emailAddress = emailAddressField.getText().toString();
-                String password = passwordField.getText().toString();
-                String type = "patient";
-
-                final User user = new User(type, firstName, lastName, emailAddress, password);
-
-                users.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.child(user.getEmailAddress()).exists())
-                            Toast.makeText(SignUpScreen.this, "The Email Address already exists", Toast.LENGTH_SHORT).show();
-                        else {
-                            users.child(user.getEmailAddress()).setValue(user);
-                            Toast.makeText(SignUpScreen.this, "You have succesfully registered", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        //extra
-                    }
-                });
+                final String firstName = edtFirstName.getText().toString();
+                final String lastName = edtLastName.getText().toString();
+                final String emailAddress = edtEmailAddress.getText().toString();
+                final String password = edtPassword.getText().toString();
+                final String type = spinner.getSelectedItem().toString();
 
 
+
+
+                auth.createUserWithEmailAndPassword(emailAddress,password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    User user;
+
+                                    if(type.equals("patient")){
+                                        user = new Patient(firstName, lastName, emailAddress);}
+                                        else{
+                                        user = new Employee(firstName, lastName, emailAddress);}
+                                        users.child(type).child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Toast.makeText(SignUpScreen.this,"You have sucessfully registered",Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                }else{
+                                    Toast.makeText(SignUpScreen.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
+        toLogInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent s = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(s);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(auth.getCurrentUser() != null){
+            //handle logged in user
+        }
     }
 }

@@ -1,19 +1,16 @@
 package com.teama.walkinclinic;
 
-public class User
+public abstract class User
 {
     protected String firstName;
     protected String lastName;
     protected String emailAddress;
-    protected String password;
-    protected String id;
+    protected String iD;
 
-    public User(String id, String firstName, String lastName, String emailAddress, String password){
-        this.id = id;
+    public User(String firstName, String lastName, String emailAddress){
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
-        this.password = password;
     }
     public User(){}
 
@@ -32,15 +29,8 @@ public class User
         return emailAddress;
     }
 
-    public String getPassword()
-    {
-        return password;
-    }
+    public String getiD(){return iD;}
 
-    public String getId()
-    {
-        return id;
-    }
 
     public void setFirstName(String firstName) {this.firstName = firstName;}
 
@@ -51,9 +41,5 @@ public class User
         this.emailAddress = emailAddress;
     }
 
-    public void setPassword(String password) { this.password = password; }
-
-    public void setId() { this.id = id; }
-
-
+    public void setiD(String iD){this.iD = iD;}
 }

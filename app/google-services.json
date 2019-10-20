@@ -8,14 +8,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:799214564540:android:49929634763873cc284cb9",
+        "mobilesdk_app_id": "1:799214564540:android:8a6a2d417c366820284cb9",
         "android_client_info": {
           "package_name": "com.teama.walkinclinic"
         }
       },
       "oauth_client": [
         {
-          "client_id": "799214564540-o5k0v28r0aj48mlb7rhtqf57nl3c5mu3.apps.googleusercontent.com",
+          "client_id": "799214564540-f4him3rstrd03igekghorvn5cc082s9l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.teama.walkinclinic",

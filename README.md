@@ -14,7 +14,7 @@ https://github.com/professor-forward/lab01_TeamA-  <br>
 
 **Link to firebase project:** https://console.firebase.google.com/project/fireapp-b8642/overview<br><br>
 
-**If need to request accesss, send email to:** 
+**If need to request accesss, send email to:** <br>
 kohuladaskirjan@gmail.com<br>
 kkohu030@uottawa.ca<br>
 

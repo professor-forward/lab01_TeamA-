@@ -1,5 +1,5 @@
 # Lab01_TeamA-<br>
-Bryson Devon Kene Keon Kirjan<br>
+Bryson Devon Keon kene Kirjan<br>
 
 **All changes are in master branch**<br>
 https://github.com/professor-forward/lab01_TeamA-  <br>

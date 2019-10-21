@@ -32,7 +32,7 @@ kkohu030@uottawa.ca<br>
 >1. Create new firebase project
 >2. Create Database (select Realtime Database)
 >3. Create Authentication
->4. downloade google-services.json file and place file in:
+>4. download google-services.json file and place file in:
 >>4a. Github Repository > app 
 >5. In Android studio click:
 >>5a. Tools > Firebase <br>

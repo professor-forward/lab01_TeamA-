@@ -13,7 +13,17 @@ https://github.com/professor-forward/lab01_TeamA-  <br>
 ### Firebase
 
 **Link to firebase project:** https://console.firebase.google.com/project/fireapp-b8642/overview<br><br>
-**To access firebase project, email authentication is needed to access, work around:**<br>
+
+**If need to request accesss, email is:** kohuladaskirjan@gmail.com<br>
+
+**Who has been invited to the firebase so far:**
+>Dr.Andrew Forward: aforward@uottawa.ca <br>
+>Aminur Ratul: mratu076@uottawa.ca <br>
+>Junzheng Wu: jwu220@uottawa.ca <br>
+>Dharama Shukla: dshuk066@uottawa.ca <br>
+>Faezeh Halabian: fhala079@uottawa.ca <br>
+
+**To use firebase without using my project, work around:**<br>
 >1. Create new firebase project
 >2. Create Database (select Realtime Database)
 >3. Create Authentication

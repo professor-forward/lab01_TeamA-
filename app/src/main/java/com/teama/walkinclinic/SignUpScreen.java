@@ -3,104 +3,116 @@ package com.teama.walkinclinic;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-
 public class SignUpScreen extends AppCompatActivity {
 
-    private TextView firstNameField;
-    private TextView lastNameField;
-    private TextView emailAddressField;
-    private TextView passwordField;
-    private Button signUpButton;
+    FirebaseDatabase database;
+    DatabaseReference users;
+    FirebaseAuth auth;
 
-    private ArrayList<User> userList;
 
-    private DatabaseReference databaseUsers;
-
+    private EditText edtFirstName;
+    private EditText edtLastName;
+    private EditText edtEmailAddress;
+    private EditText edtPassword;
+    private Button btnSignUp;
+    private Button toLogInButton;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_screen);
 
-        databaseUsers = FirebaseDatabase.getInstance().getReference("users");
+        database = FirebaseDatabase.getInstance();
+        users = database.getReference("Users");
+        auth = FirebaseAuth.getInstance();
 
-        firstNameField = (TextView)findViewById(R.id.FirstNameField);
-        lastNameField = (TextView)findViewById(R.id.LastNameField);
-        emailAddressField = (TextView)findViewById(R.id.EmailAddressField);
-        passwordField = (TextView)findViewById(R.id.PasswordField);
-        signUpButton = (Button)findViewById(R.id.SignUpButton);
+        edtFirstName = (EditText) findViewById(R.id.edtFirstName);
+        edtLastName = (EditText) findViewById(R.id.edtLastName);
+        edtEmailAddress = (EditText) findViewById(R.id.edtEmailAddress);
+        edtPassword = (EditText) findViewById(R.id.edtPassword);
 
-        signUpButton.setOnClickListener(new View.OnClickListener() {
+
+        spinner = (Spinner) findViewById(R.id.spinner);
+
+
+        toLogInButton = (Button) findViewById(R.id.btnToLogIn);
+        btnSignUp = (Button) findViewById(R.id.btnSignUp);
+
+
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String firstName = firstNameField.getText().toString();
-                String lastName = lastNameField.getText().toString();
-                String emailAddress = emailAddressField.getText().toString();
-                String password = passwordField.getText().toString();
-
-                Log.d("firstName",firstName);
-                Log.d("lastName",lastName);
-                Log.d("email",emailAddress);
-                Log.d("password",password);
+                final String firstName = edtFirstName.getText().toString();
+                final String lastName = edtLastName.getText().toString();
+                final String emailAddress = edtEmailAddress.getText().toString();
+                final String password = edtPassword.getText().toString();
+                final String type = spinner.getSelectedItem().toString();
 
 
-                SignUp(firstName,lastName,emailAddress,password);
+
+
+                auth.createUserWithEmailAndPassword(emailAddress,password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if(task.isSuccessful()){
+                                    User user;
+
+                                    if(type.equals("patient")){
+                                        user = new Patient(firstName, lastName, emailAddress);}
+                                        else{
+                                        user = new Employee(firstName, lastName, emailAddress);}
+                                        users.child(type).child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                Toast.makeText(SignUpScreen.this,"You have sucessfully registered",Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+
+                                }else{
+                                    Toast.makeText(SignUpScreen.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
             }
         });
+        toLogInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent s = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(s);
+            }
+        });
+
     }
 
-    protected void onStart()
-    {
+    @Override
+    protected void onStart() {
         super.onStart();
-
-        userList = new ArrayList<User>();
-
-        databaseUsers.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for(DataSnapshot userSnapShot : dataSnapshot.getChildren())
-                {
-                    User user = userSnapShot.getValue(User.class);
-                    userList.add(user);
-                    Log.d("FIREBASE READ", "data has been retrieved");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void SignUp(String firstName, String lastName, String emailAddress, String password)
-    {
-        // create a new patient and add them to fire base
-        String id = databaseUsers.push().getKey();
-        User patient = new Patient(id, firstName, lastName, emailAddress, password);
-        databaseUsers.child(id).setValue(patient);
-
-        Log.d("FIREBASE WRITE","data was written");
-
-        // go back to login screen
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+        if(auth.getCurrentUser() != null){
+            //handle logged in user
+        }
     }
 }

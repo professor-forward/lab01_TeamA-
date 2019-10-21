@@ -7,10 +7,11 @@
     tools:context=".AdministratorScreen">
 
     <TextView
-        android:id="@+id/messageText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome Administrator"
+        android:id="@+id/tvEnterAdministrator"
+        android:layout_width="325dp"
+        android:layout_height="38dp"
+        android:gravity="center"
+        android:text="Welcome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

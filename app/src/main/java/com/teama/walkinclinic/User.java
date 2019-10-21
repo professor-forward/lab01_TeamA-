@@ -5,8 +5,14 @@ public abstract class User
     protected String firstName;
     protected String lastName;
     protected String emailAddress;
-    protected String password;
-    protected String id;
+
+
+    public User(String firstName, String lastName, String emailAddress){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+    }
+    public User(){}
 
     public String getFirstName()
     {
@@ -23,13 +29,15 @@ public abstract class User
         return emailAddress;
     }
 
-    public String getPassword()
+
+
+    public void setFirstName(String firstName) {this.firstName = firstName;}
+
+    public void setLastName(String lastName) { this.lastName = lastName;}
+
+    public void setEmailAddress(String emailAddress)
     {
-        return password;
+        this.emailAddress = emailAddress;
     }
 
-    public String getId()
-    {
-        return id;
-    }
 }

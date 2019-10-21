@@ -3,14 +3,17 @@
 ## Dev 1
 
 ### Collaborators
+---
 Bryson Devon Kene Keon Kirjan<br>
 
 ### Repository
+---
 
 **All changes are in master branch**<br>
 https://github.com/professor-forward/lab01_TeamA-  <br>
 
 ### Firebase
+---
 
 **Link to firebase project:** https://console.firebase.google.com/project/fireapp-b8642/overview<br><br>
 
@@ -39,6 +42,7 @@ kkohu030@uottawa.ca<br>
 
 
 ### Classes, Dev 1
+---
 
 **User** - abstract class for the user roles<br>
 **Employee** - specialization of User<br>
@@ -53,6 +57,7 @@ credentials, opens AdministratorSCreen<br>
 
 
 ### Explanation
+---
 
 >1. User opens WalkInClinic Application
 >2. If User has LogIn credentials , User can Log In

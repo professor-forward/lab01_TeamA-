@@ -25,6 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 public class AdministratorScreen extends AppCompatActivity {
 
     private TextView tvEnterAdministrator;
+    private Button btnToServiceScreen;
+    private Button btnToDeleteClientScreen;
 
     FirebaseDatabase database;
     DatabaseReference users;
@@ -35,8 +37,26 @@ public class AdministratorScreen extends AppCompatActivity {
         setContentView(R.layout.activity_administrator_screen);
 
         tvEnterAdministrator = findViewById(R.id.tvEnterAdministrator);
+        btnToServiceScreen = findViewById(R.id.btnToServiceScreen);
+        btnToDeleteClientScreen = findViewById(R.id.btnToDeleteClientScreen);
 
         tvEnterAdministrator.setText("Administrator View");
+
+        btnToServiceScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent s = new Intent(getApplicationContext(),ServiceScreen.class);
+                startActivity(s);
+            }
+        });
+
+        btnToDeleteClientScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent s = new Intent(getApplicationContext(),DeleteClientScreen.class);
+                startActivity(s);
+            }
+        });
 
     }
 }

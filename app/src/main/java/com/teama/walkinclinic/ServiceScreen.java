@@ -83,6 +83,28 @@ public class ServiceScreen extends AppCompatActivity {
             }
 
         });
+
+        btnFindService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String serviceID = edtServiceID.getText().toString();
+                services.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.child(serviceID).exists()){
+                           Service service = dataSnapshot.child(serviceID).getValue(Service.class);
+                           edtServiceName.setText(service.getName());
+                           edtServicePay.setText(service.getPay());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
     }
 
 

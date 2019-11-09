@@ -9,10 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 //Firebase packages
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,13 +23,12 @@ public class ServiceScreen extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference services;
 
-    private EditText edtServiceID;
+
     private EditText edtServiceName;
     private EditText edtServicePay;
 
-    private Button btnFindService;
+    private Button btnEditService;
     private Button btnAddService;
-    private Button btnDeleteService;
     private Button btnViewServices;
 
     @Override
@@ -41,34 +39,42 @@ public class ServiceScreen extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         services = database.getReference("Services");
 
-        edtServiceID = (EditText) findViewById(R.id.edtServiceID);
         edtServiceName = (EditText) findViewById(R.id.edtServiceName);
         edtServicePay = (EditText) findViewById(R.id.edtServicePay);
 
-        btnFindService = (Button) findViewById(R.id.btnFindService);
+        btnEditService = (Button) findViewById(R.id.btnEditService);
         btnAddService = (Button) findViewById(R.id.btnAddService);
-        btnDeleteService = (Button) findViewById(R.id.btnDeleteService);
+
 
         btnViewServices = (Button) findViewById(R.id.btnViewServices);
 
         btnAddService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String serviceID = edtServiceID.getText().toString();
                 final String serviceName = edtServiceName.getText().toString();
                 final String servicePay = edtServicePay.getText().toString();
 
+                if(serviceName.trim().matches("")){
+                    Toast.makeText(getApplicationContext(),"You did not enter a Service name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(servicePay.matches("")){
+                    Toast.makeText(getApplicationContext(), "You did not enter a Service pay", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 services.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(DataSnapshot ds: dataSnapshot.getChildren()){
-                            if(!(serviceID.equals(ds.getValue(Service.class).getID()) || serviceName.equals(ds.getValue(Service.class).getName()) )){
-                                Service service = new Service(serviceID,serviceName,servicePay);
-                                services.child(serviceID).setValue(service);
-
-                            }
+                        if(!dataSnapshot.child(serviceName).exists()) {
+                            Service service = new Service(serviceName, servicePay);
+                            services.child(serviceName).setValue(service);
+                            Toast.makeText(getApplicationContext(),"The Service with name " + serviceName +", and pay " + servicePay + " has been sucessfully added", Toast.LENGTH_LONG ).show();
                         }
-                    }
+                        else{
+                            Toast.makeText(getApplicationContext(),"A service with name, " + serviceName + ", already exists. To edit this service, click 'Edit Service' ", Toast.LENGTH_LONG).show();
+                        }
+                        }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -80,39 +86,29 @@ public class ServiceScreen extends AppCompatActivity {
 
             }
         });
-        btnDeleteService.setOnClickListener(new View.OnClickListener() {
+
+        btnEditService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String serviceID = edtServiceID.getText().toString();
+                final String serviceName = edtServiceName.getText().toString();
+                final String servicePay = edtServicePay.getText().toString();
+                if(serviceName.trim().matches("")){
+                    Toast.makeText(getApplicationContext(),"You did not enter a Service name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(servicePay.matches("")){
+                    Toast.makeText(getApplicationContext(), "You did not enter a Service pay", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 services.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child(serviceID).exists()){
-                            dataSnapshot.child(serviceID).getRef().removeValue();
+                        if(dataSnapshot.child(serviceName).exists()){
+                           dataSnapshot.child(serviceName).child("pay").getRef().setValue(servicePay);
+                            Toast.makeText(getApplicationContext(),"The Service pay of " + serviceName + " has been updated to " + servicePay, Toast.LENGTH_LONG).show();
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-            }
-
-        });
-
-        btnFindService.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String serviceID = edtServiceID.getText().toString();
-                services.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child(serviceID).exists()){
-                           Service service = dataSnapshot.child(serviceID).getValue(Service.class);
-                            edtServiceName.setText(service.getName());
-                            edtServicePay.setText(service.getPay());
+                        else{
+                            Toast.makeText(getApplicationContext(), "A service with name, " + serviceName +", does not exist. To add this service, click 'Add Service' ", Toast.LENGTH_LONG).show();
                         }
 
                     }

@@ -40,4 +40,9 @@ public abstract class User
         this.emailAddress = emailAddress;
     }
 
+    public String toString()
+    {
+        return emailAddress + ", " + firstName + " " + lastName;
+    }
+
 }

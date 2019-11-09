@@ -53,7 +53,7 @@ public class AdministratorScreen extends AppCompatActivity {
         btnToDeleteClientScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent s = new Intent(getApplicationContext(),DeleteClientScreen.class);
+                Intent s = new Intent(getApplicationContext(),ManageUsers.class);
                 startActivity(s);
             }
         });

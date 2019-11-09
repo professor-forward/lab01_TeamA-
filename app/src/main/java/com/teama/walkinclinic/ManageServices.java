@@ -32,6 +32,7 @@ public class ManageServices extends AppCompatActivity {
 
 
     private ListView lvServices;
+    ArrayList<Service> servicesList;
 
 
     @Override
@@ -40,19 +41,20 @@ public class ManageServices extends AppCompatActivity {
         setContentView(R.layout.activity_manage_services);
 
         lvServices = findViewById(R.id.lvServices);
+        servicesList = new ArrayList<Service>();
 
 
 
         services.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<String> servicesList = new ArrayList<String>();
+
                 for(DataSnapshot ds:dataSnapshot.getChildren()){
                     Service service = ds.getValue(Service.class);
-                    servicesList.add(service.getName());
+                    servicesList.add(service);
 
                 }
-                ArrayAdapter <String>servicesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, servicesList);
+                ArrayAdapter <Service>servicesAdapter = new ArrayAdapter<Service>(getApplicationContext(), android.R.layout.simple_list_item_1, servicesList);
                 lvServices.setAdapter(servicesAdapter);
             }
 
@@ -62,8 +64,65 @@ public class ManageServices extends AppCompatActivity {
             }
         });
 
+        lvServices.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Service service = servicesList.get(position);
+
+                Intent serviceInfoPassToPopUp = new Intent(getApplicationContext(), ManageServicesPopUp.class);
+                serviceInfoPassToPopUp.putExtra("service_name",service.getName());
+                serviceInfoPassToPopUp.putExtra("service_pay",service.getPay());
+
+                startActivityForResult(serviceInfoPassToPopUp,1);
+            }
+        });
 
 
 
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK){
+            if(data.hasExtra("service_name")){
+                String serviceName = data.getExtras().getString("service_name");
+                Service markedService = servicesList.get(0);
+
+                for(Service service: servicesList){
+                    if(service.getName().equals(serviceName)){
+                        markedService = service;
+                    }
+                }
+                deleteService(markedService);
+            }
+        }
+
+    }
+
+    private void deleteService(final Service service){
+
+        services.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    if(service.getName().equals(ds.getValue(Service.class).getName())){
+                        ds.getRef().removeValue();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        servicesList.remove(service);
+        ArrayAdapter<Service> servicesAdapter = new ArrayAdapter<Service>(getApplicationContext(),android.R.layout.simple_list_item_1,servicesList);
+        lvServices.clearChoices();
+        lvServices.setAdapter(servicesAdapter);
     }
 }

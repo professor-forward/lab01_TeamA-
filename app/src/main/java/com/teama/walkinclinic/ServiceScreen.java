@@ -54,13 +54,29 @@ public class ServiceScreen extends AppCompatActivity {
         btnAddService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String serviceID = edtServiceID.getText().toString();
-                String serviceName = edtServiceName.getText().toString();
-                String servicePay = edtServicePay.getText().toString();
+                final String serviceID = edtServiceID.getText().toString();
+                final String serviceName = edtServiceName.getText().toString();
+                final String servicePay = edtServicePay.getText().toString();
 
-                Service service = new Service(serviceID,serviceName,servicePay);
+                services.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot ds: dataSnapshot.getChildren()){
+                            if(!(serviceID.equals(ds.getValue(Service.class).getID()) || serviceName.equals(ds.getValue(Service.class).getName()) )){
+                                Service service = new Service(serviceID,serviceName,servicePay);
+                                services.child(serviceID).setValue(service);
 
-                services.child(serviceID).setValue(service);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
 
             }
         });

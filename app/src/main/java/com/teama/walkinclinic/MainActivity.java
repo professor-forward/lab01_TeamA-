@@ -63,39 +63,40 @@ public class MainActivity extends AppCompatActivity {
                     Intent s = new Intent(getApplicationContext(), AdministratorScreen.class);
                     startActivity(s);
                 }
+                else {//added to remove incorrect login credentials
+                    auth.signInWithEmailAndPassword(emailAddress, password)
+                            .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        FirebaseUser user = auth.getInstance().getCurrentUser();
+                                        final String uid = user.getUid();
 
-                auth.signInWithEmailAndPassword(emailAddress, password)
-                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
-                                    FirebaseUser user = auth.getInstance().getCurrentUser();
-                                    final String uid = user.getUid();
+                                        users.addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                if (dataSnapshot.child("patient").child(uid).exists()) {
+                                                    Intent s = new Intent(getApplicationContext(), PatientScreen.class);
+                                                    s.putExtra("uid", uid);
+                                                    startActivity(s);
+                                                } else if (dataSnapshot.child("employee").child(uid).exists()) {
+                                                    Intent s = new Intent(getApplicationContext(), EmployeeScreen.class);
+                                                    s.putExtra("uid", uid);
+                                                    startActivity(s);
+                                                }
+                                            }
 
-                                    users.addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            if(dataSnapshot.child("patient").child(uid).exists()){
-                                                Intent s = new Intent(getApplicationContext(), PatientScreen.class);
-                                                s.putExtra("uid",uid);
-                                                startActivity(s);
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                //not needed
                                             }
-                                            else if(dataSnapshot.child("employee").child(uid).exists()){
-                                                Intent s = new Intent(getApplicationContext(), EmployeeScreen.class);
-                                                s.putExtra("uid",uid);
-                                                startActivity(s);
-                                            }
-                                        }
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                                            //not needed
-                                        }
-                                    });
-                                } else{
-                                    Toast.makeText(MainActivity.this, "Incorrect login credentials", Toast.LENGTH_SHORT).show();
+                                        });
+                                    } else {
+                                        Toast.makeText(MainActivity.this, "Incorrect login credentials", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
             }
         });
 

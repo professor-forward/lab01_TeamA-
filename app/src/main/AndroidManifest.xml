@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DeleteClientScreen"></activity>
+        <activity android:name=".ManageServicesPopUp"></activity>
+        <activity android:name=".ManageServices" />
+        <activity android:name=".DeleteClientScreen" />
         <activity android:name=".ServiceScreen" />
         <activity android:name=".AdministratorScreen" />
         <activity android:name=".EmployeeScreen" />

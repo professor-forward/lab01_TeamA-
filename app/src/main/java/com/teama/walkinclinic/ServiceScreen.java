@@ -3,6 +3,7 @@ package com.teama.walkinclinic;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
@@ -28,9 +29,9 @@ public class ServiceScreen extends AppCompatActivity {
     private EditText edtServicePay;
 
     private Button btnFindService;
-    private Button btnEditService;
     private Button btnAddService;
     private Button btnDeleteService;
+    private Button btnViewServices;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,10 @@ public class ServiceScreen extends AppCompatActivity {
         edtServicePay = (EditText) findViewById(R.id.edtServicePay);
 
         btnFindService = (Button) findViewById(R.id.btnFindService);
-        btnEditService = (Button) findViewById(R.id.btnEditService);
         btnAddService = (Button) findViewById(R.id.btnAddService);
         btnDeleteService = (Button) findViewById(R.id.btnDeleteService);
+
+        btnViewServices = (Button) findViewById(R.id.btnViewServices);
 
         btnAddService.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,9 +95,10 @@ public class ServiceScreen extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(serviceID).exists()){
                            Service service = dataSnapshot.child(serviceID).getValue(Service.class);
-                           edtServiceName.setText(service.getName());
-                           edtServicePay.setText(service.getPay());
+                            edtServiceName.setText(service.getName());
+                            edtServicePay.setText(service.getPay());
                         }
+
                     }
 
                     @Override
@@ -103,6 +106,14 @@ public class ServiceScreen extends AppCompatActivity {
 
                     }
                 });
+            }
+        });
+
+        btnViewServices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent s = new Intent(getApplicationContext(),ManageServices.class);
+                startActivity(s);
             }
         });
     }

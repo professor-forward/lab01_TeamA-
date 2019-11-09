@@ -10,6 +10,9 @@ public class Service {
         this.name = name.trim();
         this.pay = pay.trim();
     }
+    public Service(){
+
+    }
 
     public String getID(){
         return this.iD;
@@ -28,5 +31,8 @@ public class Service {
     }
     public void setPay(String pay){
         this.pay = pay.trim();
+    }
+    public String toString(){
+        return this.name + ":" + this.pay;
     }
 }

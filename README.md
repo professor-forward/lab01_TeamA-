@@ -1,8 +1,7 @@
 # Lab01_TeamA-<br>
 
-# Dev 2
-#### -Admin Functionality - Add/Edit/View/Delete services<br>-CircleCI Integration for 5 Unit Test Cases
-#### Admin login credentials:<br>User: admin <br>Password: 5T5ptQ
+# Dev 3
+#### -Employee Functionality - Add/Remove Services from Clinic
 
 ### Collaborators
 

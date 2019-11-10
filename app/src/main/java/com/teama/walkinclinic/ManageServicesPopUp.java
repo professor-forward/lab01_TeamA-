@@ -15,6 +15,7 @@ public class ManageServicesPopUp extends AppCompatActivity {
 
     public TextView tvServiceInfo;
     public TextView tvServiceInfo2;
+    public TextView tvServiceInfo3;
     private Button btnDeleteService;
 
 
@@ -25,13 +26,16 @@ public class ManageServicesPopUp extends AppCompatActivity {
 
         final String servicesName = getIntent().getExtras().getString("service_name");
         final String servicesPay = getIntent().getExtras().getString("service_pay");
+        final String servicesRole = getIntent().getExtras().getString("service_role");
 
         tvServiceInfo = findViewById(R.id.tvServiceInfo);
         tvServiceInfo2 = findViewById(R.id.tvServiceInfo2);
+        tvServiceInfo3 = findViewById(R.id.tvServiceInfo3);
         btnDeleteService = findViewById(R.id.btnDeleteService);
 
         tvServiceInfo.setText("Service: " + servicesName);
         tvServiceInfo2.setText("Pay: " + servicesPay);
+        tvServiceInfo3.setText("Role: " + servicesRole);
 
         btnDeleteService.setOnClickListener(new View.OnClickListener() {
             @Override

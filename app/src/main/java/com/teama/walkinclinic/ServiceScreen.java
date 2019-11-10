@@ -26,6 +26,7 @@ public class ServiceScreen extends AppCompatActivity {
 
     private EditText edtServiceName;
     private EditText edtServicePay;
+    private EditText edtServiceRole;
 
     private Button btnEditService;
     private Button btnAddService;
@@ -41,6 +42,7 @@ public class ServiceScreen extends AppCompatActivity {
 
         edtServiceName = (EditText) findViewById(R.id.edtServiceName);
         edtServicePay = (EditText) findViewById(R.id.edtServicePay);
+        edtServiceRole = (EditText) findViewById(R.id.edtServiceRole);
 
         btnEditService = (Button) findViewById(R.id.btnEditService);
         btnAddService = (Button) findViewById(R.id.btnAddService);
@@ -53,6 +55,7 @@ public class ServiceScreen extends AppCompatActivity {
             public void onClick(View view) {
                 final String serviceName = edtServiceName.getText().toString();
                 final String servicePay = edtServicePay.getText().toString();
+                final String serviceRole = edtServiceRole.getText().toString();
 
                 if(serviceName.trim().matches("")){
                     Toast.makeText(getApplicationContext(),"You did not enter a Service name", Toast.LENGTH_SHORT).show();
@@ -62,14 +65,18 @@ public class ServiceScreen extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "You did not enter a Service pay", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(serviceRole.trim().matches("")){
+                    Toast.makeText(getApplicationContext(), "You did not enter a Service role", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 services.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(!dataSnapshot.child(serviceName).exists()) {
-                            Service service = new Service(serviceName, servicePay);
+                            Service service = new Service(serviceName, servicePay, serviceRole);
                             services.child(serviceName).setValue(service);
-                            Toast.makeText(getApplicationContext(),"The Service with name " + serviceName +", and pay " + servicePay + " has been sucessfully added", Toast.LENGTH_LONG ).show();
+                            Toast.makeText(getApplicationContext(),"The Service with name " + serviceName +", role " + serviceRole + " and pay " + servicePay + " has been sucessfully added", Toast.LENGTH_LONG ).show();
                         }
                         else{
                             Toast.makeText(getApplicationContext(),"A service with name, " + serviceName + ", already exists. To edit this service, click 'Edit Service' ", Toast.LENGTH_LONG).show();
@@ -92,6 +99,7 @@ public class ServiceScreen extends AppCompatActivity {
             public void onClick(View view) {
                 final String serviceName = edtServiceName.getText().toString();
                 final String servicePay = edtServicePay.getText().toString();
+                final String serviceRole = edtServiceRole.getText().toString();
                 if(serviceName.trim().matches("")){
                     Toast.makeText(getApplicationContext(),"You did not enter a Service name", Toast.LENGTH_SHORT).show();
                     return;
@@ -100,12 +108,17 @@ public class ServiceScreen extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "You did not enter a Service pay", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                if(serviceRole.trim().matches("")){
+                    Toast.makeText(getApplicationContext(), "You did not enter a Service role", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 services.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(serviceName).exists()){
                            dataSnapshot.child(serviceName).child("pay").getRef().setValue(servicePay);
-                            Toast.makeText(getApplicationContext(),"The Service pay of " + serviceName + " has been updated to " + servicePay, Toast.LENGTH_LONG).show();
+                           dataSnapshot.child(serviceRole).child("role").getRef().setValue(serviceRole);
+                            Toast.makeText(getApplicationContext(),"The Service pay and role of " + serviceName + " has been updated to " + servicePay + " and " + serviceRole, Toast.LENGTH_LONG).show();
                         }
                         else{
                             Toast.makeText(getApplicationContext(), "A service with name, " + serviceName +", does not exist. To add this service, click 'Add Service' ", Toast.LENGTH_LONG).show();

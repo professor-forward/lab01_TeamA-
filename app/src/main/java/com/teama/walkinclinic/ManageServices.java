@@ -72,6 +72,7 @@ public class ManageServices extends AppCompatActivity {
                 Intent serviceInfoPassToPopUp = new Intent(getApplicationContext(), ManageServicesPopUp.class);
                 serviceInfoPassToPopUp.putExtra("service_name",service.getName());
                 serviceInfoPassToPopUp.putExtra("service_pay",service.getPay());
+                serviceInfoPassToPopUp.putExtra("service_role", service.getRole());
 
                 startActivityForResult(serviceInfoPassToPopUp,1);
             }

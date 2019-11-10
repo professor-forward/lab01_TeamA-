@@ -15,7 +15,8 @@ https://github.com/professor-forward/lab01_TeamA-  <br>
 ### CirlceCI Integration
 **For our CircleCI integration, it was not possible to create the test using the repository in the professor forward organization, this was due to not having enough credits. Instead I had created the same repository privately outside of the organization and ran the tests (forking is also disabled) **
 
-**The results of the tests** [![CircleCI](https://circleci.com/gh/kprime21/Deliverable2CircleCI.svg?style=svg)](https://circleci.com/gh/kprime21/Deliverable2CircleCI)
+**The results of the tests** 
+[![CircleCI](https://circleci.com/gh/kprime21/Deliverable2CircleCI.svg?style=svg)](https://circleci.com/gh/kprime21/Deliverable2CircleCI)
 
 ### Firebase
 

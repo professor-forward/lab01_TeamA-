@@ -29,7 +29,9 @@ Two Unit Tests were created for the ServiceScreen page
 
 
 ### CirlceCI Integration
-**For our CircleCI integration, it was not possible to create the test using the repository in the professor forward organization, this was due to not having enough credits. Instead I had created the same repository privately outside of the organization and ran the tests (forking is also disabled) **
+For our CircleCI integration, it was not possible to create the test using the repository in the professor forward organization, this was due to not having enough credits. Instead I had created the same repository privately outside of the organization and ran the tests (forking is also disabled).
+
+Since the project is private, I had created a token in the API permissions on CircleCI to be able to pass over the **Passed** result as you can see below. 
 
 **The results of the Unit tests**  <br>
 [![CircleCI](https://circleci.com/gh/kprime21/Deliverable2CircleCI.svg?style=svg&circle-token=65bbf77c6582ac606f65e1297391b907ac4d7679)](https://circleci.com/gh/kprime21/Deliverable2CircleCI)

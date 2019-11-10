@@ -29,6 +29,6 @@ public class Service {
         this.pay = pay.trim();
     }
     public String toString(){
-        return this.name + ":" + this.pay;
+        return this.name;
     }
 }

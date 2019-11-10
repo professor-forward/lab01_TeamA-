@@ -7,6 +7,7 @@ public class Employee extends User
     this.lastName = lastName;
     this.emailAddress = emailAddress;
 }
+    public Employee(){}
 
 
 }

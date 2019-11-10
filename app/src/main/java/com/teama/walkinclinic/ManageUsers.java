@@ -25,8 +25,8 @@ import java.util.ArrayList;
 
 public class ManageUsers extends AppCompatActivity {
 
-    private DatabaseReference usersDatabase = FirebaseDatabase.getInstance().getReference("users");
-    private ArrayList<User> userList = new ArrayList<User>();
+    private DatabaseReference usersDatabase = FirebaseDatabase.getInstance().getReference("Users");
+    private ArrayList<User> userList;
 
     private ListView usersListView;
 
@@ -36,16 +36,32 @@ public class ManageUsers extends AppCompatActivity {
         setContentView(R.layout.activity_manage_users);
 
         usersListView = findViewById(R.id.usersListView);
+        userList = new ArrayList<User>();
 
-        // this is test code to populate the user list with something. In reality the user list would be populated with firebase information
-        for(int i = 0; i < 20; i ++)
-        {
-            User user = new Patient("firstname" + i, "lastname" + i,"email" + i);
-            userList.add(user);
-        }
+        usersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds: dataSnapshot.child("patient").getChildren()){
+                    User patient = ds.getValue(Patient.class);
+                    userList.add(patient);
+                }
+                for(DataSnapshot ds: dataSnapshot.child("employee").getChildren()){
+                    User employee = ds.getValue(Employee.class);
+                    userList.add(employee);
+                }
 
-        ArrayAdapter usersAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, userList);
-        usersListView.setAdapter(usersAdapter);
+
+                ArrayAdapter<User> usersAdapter = new <User>ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, userList);
+                usersListView.setAdapter(usersAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         // this controls the onClick event when an item in the list view is clicked
         usersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -130,8 +146,30 @@ public class ManageUsers extends AppCompatActivity {
     }
 
     // delete a specific user - FIREBASE Code is needed here
-    private void deleteUser(User user)
+    private void deleteUser(final User user)
     {
+        usersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (user instanceof Patient) {
+                    for (DataSnapshot ds : dataSnapshot.child("patient").getChildren()) {
+                        if (ds.getValue(Patient.class).getEmailAddress().equals(user.getEmailAddress())) {
+                            ds.getRef().removeValue();
+                        }
+                    }
+                } else if (user instanceof Employee) {
+                    for (DataSnapshot ds : dataSnapshot.child("employee").getChildren()) {
+                        if (ds.getValue(Employee.class).getEmailAddress().equals(user.getEmailAddress())) {
+                            ds.getRef().removeValue();
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         // firebase code goes here for deleting user
         Log.d("check", "User: " + user.getEmailAddress());
 

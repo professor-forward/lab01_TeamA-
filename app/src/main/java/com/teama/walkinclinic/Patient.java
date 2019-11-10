@@ -8,6 +8,8 @@ public class Patient extends User
         super(firstName, lastName, emailAddress);
     }
 
+    public Patient(){}
+
 
 
 }

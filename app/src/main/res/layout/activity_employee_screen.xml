@@ -12,10 +12,31 @@
         android:layout_width="325dp"
         android:layout_height="38dp"
         android:gravity="center"
-        android:text="Welcome"
+        android:text="Employee Screen "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081"  />
+        app:layout_constraintVertical_bias="0.081" />
+
+    <Button
+        android:id="@+id/btnToInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="168dp"
+        android:text="Edit Info "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcomeEmployee" />
+
+    <Button
+        android:id="@+id/btnToServices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Services "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnToInfo"
+        app:layout_constraintVertical_bias="0.222" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,6 +30,9 @@ public class EmployeeScreen extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference userEmployee;
 
+    private Button infoButton;
+    private Button servicesButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,26 @@ public class EmployeeScreen extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         userEmployee = database.getReference("Users/employee");
 
+        infoButton = (Button) findViewById(R.id.btnToInfo);
+        servicesButton = (Button) findViewById(R.id.btnToServices);
+
         final String uidemployee = getIntent().getExtras().getString("uid");
+
+        infoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent s = new Intent(getApplicationContext(), ClinicInfoScreen.class);
+                startActivity(s);
+            }
+        });
+
+        servicesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent s = new Intent(getApplicationContext(), ClinicServiceScreen.class);
+                startActivity(s);
+            }
+        });
 
 
 

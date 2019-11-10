@@ -51,13 +51,12 @@ belongs to Employee key, send to EmployeeScreen<br>
 **AdministratorScreen** - After LogIn using hardcoded Admin
 credentials, opens AdministratorScreen, here admin can just to manage users 
 or manage services services<br>
-**Service** - This is the service class that is used to instantiate objects of type Service. A service has a name and pay<br>
+**Service** - This is the service class that is used to instantiate objects of type Service. A service has a name, pay, and role<br>
 **ServiceScreen** - If admin clicks on manage services button, he is taken to a screen
 where he can add/edit services and view all services<br>
 **ManageServices** - If admin clicks on view all services button, he is taken 
 to a new activity that has a listview where he can currently see the name of all services. If he clicks on a service, a new activity, ManageServicesPopUp, is pushed onto the stack<br>
-**ManageServicesPopUp** - After clicking on a service, admin can see the services name
-and pay, here he can choose to delete the service. If he does, the information is sent back and is returned through the intent and is sent back to the ManagaeServices activity, and the listview will be updated<br>
+**ManageServicesPopUp** - After clicking on a service, admin can see the services name, pay and role here he can choose to delete the service. If he does, the information is sent back and is returned through the intent and is sent back to the ManagaeServices activity, and the listview will be updated<br>
 ### Classes, Not related to Dev 2
 **ManageUsers** - if admin clicks on view all users button, he is taken 
 to a new activity that has a listview where he can currently see all the users. If he clicks on a user, a new activity, ManageUsersPopUp, is pushed onto the stack<br>
@@ -76,7 +75,7 @@ to a new activity that has a listview where he can currently see all the users. 
 >>4b. If he chooses to edit a service he must enter a service name that already exists
 >5. If he chooses to view all services, he is taken to a new activity, this activity contains a list view that lists all service names
 >>5a. If he clicks on a service name he is taken to a new activity<br>
->>5b. In this new activity he can view the service name and pay, and he can choose to delete the service here, which will remove it from the list view and remove it from its key in firebase realtime database
+>>5b. In this new activity he can view the service name, pay, and role, and he can choose to delete the service here, which will remove it from the list view and remove it from its key in firebase realtime database
 ### Explanation, Not related to Dev 2 
 >6. If he clicks on manage users he is taken to a new activitiy, this activity contains a list view that lists all user names
 >>6a. If he clicks on a users name he is taken to a new activity<br>

@@ -1,20 +1,24 @@
 # Lab01_TeamA-<br>
 
 # Dev 2
-## Admin Manage Services - Add/Delete/Edit services
-### Admin login credentials:<br>User: admin <br>Password: 5T5ptQ
+#### -Admin Functionality - Add/Edit/View/Delete services<br>-CircleCI Integration for 5 Unit Test Cases
+#### Admin login credentials:<br>User: admin <br>Password: 5T5ptQ
 
 ### Collaborators
 
-Bryson Devon Kene Keon Kirjan<br>
+Kirjan<br>
+Devon<br>
+Bryson<br>
+Kene<br>
+Keon<br>
 
 ### Repository
-
 
 **All changes for Dev 2 are in branch f/Deliverable 2**<br>
 https://github.com/professor-forward/lab01_TeamA-/tree/f/Deliverable2  <br>
 
 ## Unit Tests
+**Unit Tests can be found here**<br> https://github.com/professor-forward/lab01_TeamA-/tree/f/Deliverable2/app/src/test/java/com/teama/walkinclinic
 
 5 Unit Tests were created.
 
@@ -22,7 +26,7 @@ Two Unit Tests were created for the Sign Up page
 One Unit Test was created for the Log In Page
 Two Unit Tests were created for the ServiceScreen page
 
-Unit Tests can be found at: https://github.com/professor-forward/lab01_TeamA-/tree/f/Deliverable2/app/src/test/java/com/teama/walkinclinic
+
 
 ### CirlceCI Integration
 **For our CircleCI integration, it was not possible to create the test using the repository in the professor forward organization, this was due to not having enough credits. Instead I had created the same repository privately outside of the organization and ran the tests (forking is also disabled) **
@@ -31,7 +35,7 @@ Unit Tests can be found at: https://github.com/professor-forward/lab01_TeamA-/tr
 [![CircleCI](https://circleci.com/gh/kprime21/Deliverable2CircleCI.svg?style=svg&circle-token=65bbf77c6582ac606f65e1297391b907ac4d7679)](https://circleci.com/gh/kprime21/Deliverable2CircleCI)
 
 
-### Classes, Dev 2
+## Classes, Dev 2
 **User** - abstract class for the user roles<br>
 **Employee** - specialization of User<br>
 **Patient** - specialization of User<br>
@@ -59,7 +63,7 @@ to a new activity that has a listview where he can currently see all the users. 
 
 
 
-### Explanation
+## Explanation
 >1. Once the admin logs in using his login credentials he is taken to his welcome screen
 >2. He can then choose if he wants to manage services or manage users
 >3. If he clicks on manage services he is taken to a new activity.

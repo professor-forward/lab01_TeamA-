@@ -1,6 +1,8 @@
 # Lab01_TeamA-<br>
 
-## Dev 2
+# Dev 2
+## Admin Manage Services - Add/Delete/Edit services
+### Admin login credentials:<br>User: admin <br>Password: 5T5ptQ
 
 ### Collaborators
 
@@ -9,47 +11,27 @@ Bryson Devon Kene Keon Kirjan<br>
 ### Repository
 
 
-**All changes are in master branch**<br>
-https://github.com/professor-forward/lab01_TeamA-  <br>
+**All changes for Dev 2 are in branch f/Deliverable 2**<br>
+https://github.com/professor-forward/lab01_TeamA-/tree/f/Deliverable2  <br>
+
+## Unit Tests
+
+5 Unit Tests were created.
+
+Two Unit Tests were created for the Sign Up page
+One Unit Test was created for the Log In Page
+Two Unit Tests were created for the ServiceScreen page
+
+Unit Tests can be found at: https://github.com/professor-forward/lab01_TeamA-/tree/f/Deliverable2/app/src/test/java/com/teama/walkinclinic
 
 ### CirlceCI Integration
 **For our CircleCI integration, it was not possible to create the test using the repository in the professor forward organization, this was due to not having enough credits. Instead I had created the same repository privately outside of the organization and ran the tests (forking is also disabled) **
 
-**The results of the tests** 
-[![CircleCI](https://circleci.com/gh/kprime21/Deliverable2CircleCI.svg?style=svg)](https://circleci.com/gh/kprime21/Deliverable2CircleCI)
-
-### Firebase
-
-
-**Link to firebase project:** https://console.firebase.google.com/project/fireapp-b8642/overview<br><br>
-
-**If need to request accesss, send email to:** <br>
-kohuladaskirjan@gmail.com<br>
-kkohu030@uottawa.ca<br>
-
-**Who has been invited to the firebase so far:**
->Dr.Andrew Forward: aforward@uottawa.ca <br>
->Aminur Ratul: mratu076@uottawa.ca <br>
->Junzheng Wu: jwu220@uottawa.ca <br>
->Dharama Shukla: dshuk066@uottawa.ca <br>
->Faezeh Halabian: fhala079@uottawa.ca <br>
-
-**To use firebase without using my project, work around:**<br>
->1. Create new firebase project
->2. Create Database (select Realtime Database)
->3. Create Authentication
->4. download google-services.json file and place file in:
->>4a. Github Repository > app 
->5. In Android studio click:
->>5a. Tools > Firebase <br>
->>5b. Set up Realtime Databse and Authentication for project with the one you had created (Link your Firebase/Google account to your project)
->6. Everything should now be set up,<br> SignUp should send information to Authentication and Realtime Databse if non-existent and legal<br> LogIn should check Authenticator to LogIn and then database to decide EmployeeScreen or PatientScreen
-
+**The results of the Unit tests**  <br>
+[![CircleCI](https://circleci.com/gh/kprime21/Deliverable2CircleCI.svg?style=svg&circle-token=65bbf77c6582ac606f65e1297391b907ac4d7679)](https://circleci.com/gh/kprime21/Deliverable2CircleCI)
 
 
 ### Classes, Dev 2
-
-
 **User** - abstract class for the user roles<br>
 **Employee** - specialization of User<br>
 **Patient** - specialization of User<br>
@@ -59,32 +41,35 @@ kkohu030@uottawa.ca<br>
 **EmployeeScreen** - After LogIn authentication, if UID 
 belongs to Employee key, send to EmployeeScreen<br>
 **AdministratorScreen** - After LogIn using hardcoded Admin
-credentials, opens AdministratorSCreen<br>
+credentials, opens AdministratorScreen, here admin can just to manage users 
+or manage services services<br>
+**Service** - This is the service class that is used to instantiate objects of type Service. A service has a name and pay<br>
+**ServiceScreen** - If admin clicks on manage services button, he is taken to a screen
+where he can add/edit services and view all services<br>
+**ManageServices** - If admin clicks on view all services button, he is taken 
+to a new activity that has a listview where he can currently see the name of all services. If he clicks on a service, a new activity, ManageServicesPopUp, is pushed onto the stack<br>
+**ManageServicesPopUp** - After clicking on a service, admin can see the services name
+and pay, here he can choose to delete the service. If he does, the information is sent back and is returned through the intent and is sent back to the ManagaeServices activity, and the listview will be updated<br>
+### Classes, Not related to Dev 2
+**ManageUsers** - if admin clicks on view all users button, he is taken 
+to a new activity that has a listview where he can currently see all the users. If he clicks on a user, a new activity, ManageUsersPopUp, is pushed onto the stack<br>
+**ManageUsersPopUp** - After clicking on a user, admin can see the users name and email address, here he can choose to delete the service. If he does, the intent is sent back through the information is sent back and is returned through the intent and is sent back to the ManageUsers activity, and the listview will be updated<br>
+
+
+
 
 
 ### Explanation
-
-
->1. User opens WalkInClinic Application
->2. If User has LogIn credentials , User can Log In
->3. If User does not have account, click on Sign Up button in top right
->4. User will be taken to a Sign In screen, where they can enter their First Name, Last Name, Email Address, Password and select if they want an Employee or Patient account
->5. Once SignUp button is clicked, FireBase authenticator is used to check if account exists
->>5a. if account does NOT exist, the account is created and user gets a Toast message notifying them the account is created<br>
->>5b. If account does exist, the account is not created and user gets a Toast message notifying them the account cannot be created
->6. User account will be created referencing either a Patient or Employee object depending on what was chosen using Spinner/Drop Down at SignUp Activity
->7. Account email and UID is stored in FireBase authenticator
->8. User can then go back to LogIn page, by clicking button in top right
->9. User can sign in with his newly created Account
->10. Admin can sign in using hardcoded Admin LogIn credentials and be redirected to AdministratorScreen
->11. Once LogIn button is clicked, FireBase authenticator is used to LogIn User depending if credentials are correct
->12. User will then be redericted to a WelcomeScreen depending on what his UID was
->>12a. This is done using Firebase Database, where the UID from the authenticator is being used as a Key under Users/Patients or Users/Employees<br>
->>12b. If UID is a child of patient key then patient screen<br>
->>12c. if UID is a child of employee key then employee screen
->13. User will be displayed with a Welcome message
-
-
-
-
-
+>1. Once the admin logs in using his login credentials he is taken to his welcome screen
+>2. He can then choose if he wants to manage services or manage users
+>3. If he clicks on manage services he is taken to a new activity.
+>4. In this new activity he can add or edit a service or view all services
+>>4a. if he chooses to add a service he must enter a service name and a number for pay<br>
+>>4b. If he chooses to edit a service he must enter a service name that already exists
+>5. If he chooses to view all services, he is taken to a new activity, this activity contains a list view that lists all service names
+>>5a. If he clicks on a service name he is taken to a new activity<br>
+>>5b. In this new activity he can view the service name and pay, and he can choose to delete the service here, which will remove it from the list view and remove it from its key in firebase realtime database
+### Explanation, Not related to Dev 2 
+>6. If he clicks on manage users he is taken to a new activitiy, this activity contains a list view that lists all user names
+>>6a. If he clicks on a users name he is taken to a new activity<br>
+>>6b. In this new activity he can view the users email, and he can choose to delete the user here, which will remove it from the list view and remove it from its key in firebase realtime database

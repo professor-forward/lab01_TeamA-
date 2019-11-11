@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/homescreenbackground"
+    android:visibility="visible"
     tools:context=".ClinicServiceScreen">
 
     <Button
@@ -11,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:background="@drawable/colourbutton"
         android:text="Save Services"
         app:layout_constraintBottom_toTopOf="@+id/activeServicesTextField2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,9 +26,9 @@
         android:id="@+id/availableServicesListView"
         android:layout_width="387dp"
         android:layout_height="224dp"
+        android:background="#00707070"
         android:forceDarkAllowed="true"
         android:visibility="visible"
-        android:background="#00707070"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -34,9 +37,9 @@
         android:id="@+id/activeServicesListView"
         android:layout_width="379dp"
         android:layout_height="229dp"
+        android:background="#00707070"
         android:forceDarkAllowed="true"
         android:visibility="visible"
-        android:background="#00707070"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

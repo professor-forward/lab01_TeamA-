@@ -157,23 +157,25 @@ public class ClinicServiceScreen extends AppCompatActivity {
 
                 availableServices.clear();
 
+                // get available services
                 for(DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     Service availableService = ds.getValue(Service.class);
 
                     // if active services has this service then it is no longer available, so don't add it to the available services list
-                    boolean notInAvailable
+                    boolean inActiveServices = false;
 
                     for(Service s : activeServices)
                     {
-                        if(s.equals(availableService))
+                        // check if the available service is already in the activeServices list
+                        if(availableService.equals(s))
                         {
-
+                            inActiveServices = true;
                         }
                     }
 
-
-                    if(activeServices.contains(availableService) == false)
+                    //if not in activeServices then add to availableServices
+                    if(inActiveServices == false)
                     {
                         availableServices.add(availableService);
                     }

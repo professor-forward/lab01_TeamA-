@@ -39,4 +39,22 @@ public class Service {
     public String toString(){
         return this.name;
     }
+
+    // allows for the comparison on two services
+    public boolean equals(Service other)
+    {
+        if(name == null || pay == null || role == null)
+        {
+            return false;
+        }
+
+        if(other.getName().equals(this.name) && other.getPay().equals(this.pay) && other.getRole().equals(this.role))
+        {
+            return true;
+        }
+        else
+            {
+                return false;
+            }
+    }
 }

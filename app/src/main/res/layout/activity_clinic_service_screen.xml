@@ -6,14 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".ClinicServiceScreen">
 
-    <TextView
-        android:id="@+id/textView6"
+    <Button
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Services"
-        android:textSize="20sp"
+        android:layout_marginTop="8dp"
+        android:text="Save Services"
+        app:layout_constraintBottom_toTopOf="@+id/activeServicesTextField2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activeServicesTextField"
+        app:layout_constraintVertical_bias="0.407" />
+
+    <ListView
+        android:id="@+id/availableServicesListView"
+        android:layout_width="387dp"
+        android:layout_height="224dp"
+        android:forceDarkAllowed="true"
+        android:visibility="visible"
+        android:background="#00707070"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ListView
+        android:id="@+id/activeServicesListView"
+        android:layout_width="379dp"
+        android:layout_height="229dp"
+        android:forceDarkAllowed="true"
+        android:visibility="visible"
+        android:background="#00707070"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activeServicesTextField2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Available Services"
+        app:layout_constraintBottom_toTopOf="@+id/availableServicesListView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/activeServicesTextField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active Services"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activeServicesListView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

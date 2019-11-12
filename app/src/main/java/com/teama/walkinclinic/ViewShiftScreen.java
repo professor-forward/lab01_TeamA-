@@ -29,6 +29,8 @@ public class ViewShiftScreen extends AppCompatActivity {
     DatabaseReference shifts;
     CalendarView shiftCalendar;
 
+    String uid = "ECBdr0cykjXs14R4RvzYyZnUNiE2";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,19 @@ public class ViewShiftScreen extends AppCompatActivity {
         shiftCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                Shift shift = new Shift(String.valueOf(month),String.valueOf(dayOfMonth),String.valueOf(10));
+                final Shift shift = new Shift(String.valueOf(month),String.valueOf(dayOfMonth),String.valueOf(10));
+                shifts.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        dataSnapshot.getValue(Employee.class).setShift(shift);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
 
             }
         });

@@ -25,12 +25,17 @@ import com.google.firebase.database.ValueEventListener;
 
 public class WorkDaysScreen extends AppCompatActivity {
 
+
     FirebaseDatabase database;
     DatabaseReference shifts;
     CalendarView shiftCalendar;
+    EditText edtChooseShiftStart;
+    EditText edtChooseShiftEnd;
+    Button btnAddShift;
 
     String uid = "ECBdr0cykjXs14R4RvzYyZnUNiE2";
-    String
+    Employee LANCER = new Employee("Cu", "Chulain", "gaebolg@gmail.com");
+
 
 
     @Override
@@ -42,27 +47,28 @@ public class WorkDaysScreen extends AppCompatActivity {
         shifts = database.getReference("Users").child("employee");
 
         shiftCalendar = findViewById(R.id.cvShifts);
+        edtChooseShiftStart = findViewById(R.id.edtChooseShiftStart);
+        edtChooseShiftEnd = findViewById(R.id.edtChooseShiftEnd);
+        btnAddShift = findViewById(R.id.btnAddShift);
 
-        shiftCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+        //
+
+
+
+        btnAddShift.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                final Shift shift = new Shift(String.valueOf(month),String.valueOf(dayOfMonth),String.valueOf(10));
-                shifts.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            public void onClick(View view) {
+                shiftCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        dataSnapshot.getValue(Employee.class).setShift(shift);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                    public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                        String hours = Integer.toString((Integer.parseInt(edtChooseShiftStart.getText().toString()) - Integer.parseInt(edtChooseShiftEnd.getText().toString())));
+                        Shift shift = new Shift(Integer.toString(month), Integer.toString(dayOfMonth), hours);
+                        LANCER.addShift(shift);
                     }
                 });
-
-
             }
         });
-
 
 
 

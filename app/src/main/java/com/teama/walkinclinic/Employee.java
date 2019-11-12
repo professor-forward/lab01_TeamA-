@@ -1,8 +1,9 @@
 package com.teama.walkinclinic;
 
+import java.util.ArrayList;
 public class Employee extends User
 {
-    String[] shift;
+    ArrayList<Shift> shiftList = new ArrayList<Shift>();
     int shiftnum = 0;
 
     public Employee(String firstName, String lastName, String emailAddress){
@@ -12,25 +13,8 @@ public class Employee extends User
 }
     public Employee(){}
 
-    public String getShift(){
-        String allShifts = " ";
-        if(shift.length>0){
-            for(int x = 0; x<shift.length;x++){
-                allShifts = shift[x] + " ";
-            }
-            return allShifts;
-        }
-        else{
-            return "This employee currently has no shfits";
-        }
+    public void addShift(Shift shift){
+        this.shiftList.add(shift);
     }
-
-    public void setShift(Shift shift){
-        this.shift[shiftnum++] = shift.toString();
-    }
-
-
-
-
 
 }

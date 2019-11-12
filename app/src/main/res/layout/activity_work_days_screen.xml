@@ -54,7 +54,7 @@
         tools:layout_editor_absoluteY="382dp" />
 
     <EditText
-        android:id="@+id/editChooseShiftEnd"
+        android:id="@+id/edtChooseShiftEnd"
         android:layout_width="153dp"
         android:layout_height="25dp"
         android:layout_marginEnd="16dp"

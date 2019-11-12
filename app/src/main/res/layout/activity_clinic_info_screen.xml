@@ -154,17 +154,23 @@
         android:id="@+id/btnGoToSetMyHours"
         android:layout_width="181dp"
         android:layout_height="74dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="432dp"
         android:text="Set My Hours"
-        tools:layout_editor_absoluteX="105dp"
-        tools:layout_editor_absoluteY="451dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnSaveClinicInfoChanges"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginTop="368dp"
         android:text="Save Changes"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="568dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

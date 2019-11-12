@@ -24,23 +24,26 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ClinicInfoScreen extends AppCompatActivity {
 
-    private Button WorkDaysButton;
 
-
+    Button btnGoToSetMyHours;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_info_screen);
 
-        WorkDaysButton = (Button) findViewById(R.id.btnToWorkDays);
+        btnGoToSetMyHours = findViewById(R.id.btnGoToSetMyHours);
 
-        WorkDaysButton.setOnClickListener(new View.OnClickListener() {
+        btnGoToSetMyHours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent s = new Intent(getApplicationContext(), WorkDaysScreen.class);
                 startActivity(s);
+
             }
         });
+
+
+
     }
 }

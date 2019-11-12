@@ -4,27 +4,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/signupbackground"
     tools:context=".ClinicInfoScreen">
 
-    <TextView
-        android:id="@+id/textView3"
+    <EditText
+        android:id="@+id/edtClinicAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="Info"
-        app:layout_constraintBottom_toTopOf="@+id/btnToWorkDays"
+        android:layout_marginTop="168dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:ems="10"
+        android:hint="Enter the Address"
+        android:inputType="text"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnToWorkDays"
+    <TextView
+        android:id="@+id/tvServiceName5"
+        android:layout_width="68dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="264dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Opening Hours"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/edtClinicName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtClinicName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="268dp"
-        android:text="Access Work Days"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:ems="10"
+        android:hint="Enter the Clinic Name"
+        android:inputType="text"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvServiceName4"
+        android:layout_width="68dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Phone Number"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/edtClinicName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtClinicPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="212dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:ems="10"
+        android:hint="Enter the Phone Number"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtClinicOpeningHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="256dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:ems="10"
+        android:hint="Enter the Opening Hours"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvServiceName6"
+        android:layout_width="68dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="308dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Closing"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/edtClinicName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtClinicClosingHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:ems="10"
+        android:hint="Enter the Closing Hours"
+        android:inputType="text"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvServiceName"
+        android:layout_width="68dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Name"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/edtClinicName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvServiceName3"
+        android:layout_width="68dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="176dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="Address"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/edtClinicName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="Information"
+        android:textColor="@color/colorAccent"
+        android:textSize="32sp"
+        tools:layout_editor_absoluteX="18dp"
+        tools:layout_editor_absoluteY="40dp" />
+
+    <Button
+        android:id="@+id/btnGoToSetMyHours"
+        android:layout_width="181dp"
+        android:layout_height="74dp"
+        android:text="Set My Hours"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="451dp" />
+
+    <Button
+        android:id="@+id/btnSaveClinicInfoChanges"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save Changes"
+        tools:layout_editor_absoluteX="134dp"
+        tools:layout_editor_absoluteY="568dp" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

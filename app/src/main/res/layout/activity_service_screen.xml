@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvServicePay" />
 
     <EditText
-        android:id="@+id/edtServiceName"
+        android:id="@+id/edtClinicName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"

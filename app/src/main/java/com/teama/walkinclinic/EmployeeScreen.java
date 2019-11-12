@@ -52,6 +52,7 @@ public class EmployeeScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent s = new Intent(getApplicationContext(), ClinicInfoScreen.class);
+                s.putExtra("uidemployee", uidemployee);
                 startActivity(s);
             }
         });

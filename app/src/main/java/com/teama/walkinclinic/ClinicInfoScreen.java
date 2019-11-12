@@ -34,10 +34,13 @@ public class ClinicInfoScreen extends AppCompatActivity {
 
         btnGoToSetMyHours = findViewById(R.id.btnGoToSetMyHours);
 
+        final String uidemployee = getIntent().getExtras().getString("uidemployee");
+
         btnGoToSetMyHours.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent s = new Intent(getApplicationContext(), WorkDaysScreen.class);
+                s.putExtra("uidemployee",uidemployee);
                 startActivity(s);
 
             }

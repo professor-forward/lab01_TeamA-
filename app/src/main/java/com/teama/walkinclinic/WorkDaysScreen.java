@@ -33,7 +33,7 @@ public class WorkDaysScreen extends AppCompatActivity {
     EditText edtChooseShiftEnd;
     Button btnAddShift;
 
-    String uid = "ECBdr0cykjXs14R4RvzYyZnUNiE2";
+    final String uidemployee = getIntent().getExtras().getString("uidemployee");
     Employee LANCER = new Employee("Cu", "Chulain", "gaebolg@gmail.com");
 
 
@@ -59,8 +59,19 @@ public class WorkDaysScreen extends AppCompatActivity {
                     @Override
                     public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                         String hours = Integer.toString((Integer.parseInt(edtChooseShiftStart.getText().toString()) - Integer.parseInt(edtChooseShiftEnd.getText().toString())));
-                        Shift shift = new Shift(Integer.toString(month), Integer.toString(dayOfMonth), hours);
-                        LANCER.addShift(shift);
+                        final Shift shift = new Shift(Integer.toString(month), Integer.toString(dayOfMonth), hours);
+
+                        shifts.child(uidemployee).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                dataSnapshot.getValue(Employee.class).addShift(shift);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
                 });
             }

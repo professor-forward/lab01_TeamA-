@@ -52,10 +52,6 @@ public class WorkDaysScreen extends AppCompatActivity {
         btnAddShift = findViewById(R.id.btnAddShift);
 
 
-        //
-
-
-
         btnAddShift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

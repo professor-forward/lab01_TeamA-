@@ -27,41 +27,12 @@ public class ViewShiftScreen extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference shifts;
-    CalendarView shiftCalendar;
-
-    String uid = "ECBdr0cykjXs14R4RvzYyZnUNiE2";
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_shift_screen);
-
-        database = FirebaseDatabase.getInstance();
-        shifts = database.getReference("Users").child("employee");
-
-        shiftCalendar = findViewById(R.id.cvShifts);
-
-        shiftCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                final Shift shift = new Shift(String.valueOf(month),String.valueOf(dayOfMonth),String.valueOf(10));
-                shifts.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        dataSnapshot.getValue(Employee.class).setShift(shift);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-
-            }
-        });
 
 
 

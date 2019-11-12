@@ -12,9 +12,9 @@
         android:id="@+id/btnAddShift"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
-        android:layout_marginLeft="156dp"
-        android:layout_marginTop="484dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginTop="428dp"
         android:text="Add Shfit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,9 +23,9 @@
         android:id="@+id/btnViewShifts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="136dp"
-        android:layout_marginLeft="136dp"
-        android:layout_marginTop="560dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="488dp"
         android:text="View All Shifts"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,6 +40,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtChooseShiftStart"
+        android:layout_width="141dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Edit the time you want your shift to start"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="382dp" />
+
+    <EditText
+        android:id="@+id/editChooseShiftEnd"
+        android:layout_width="153dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Edit the time you want your shift to end"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="382dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

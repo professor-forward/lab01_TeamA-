@@ -32,6 +32,7 @@ public class ViewShiftScreen extends AppCompatActivity {
     String uid = "ECBdr0cykjXs14R4RvzYyZnUNiE2";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

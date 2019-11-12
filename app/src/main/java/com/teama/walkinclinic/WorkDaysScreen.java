@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormatSymbols;
+
 public class WorkDaysScreen extends AppCompatActivity {
 
 
@@ -33,8 +35,8 @@ public class WorkDaysScreen extends AppCompatActivity {
     EditText edtChooseShiftEnd;
     Button btnAddShift;
 
-    final String uidemployee = getIntent().getExtras().getString("uidemployee");
-    Employee LANCER = new Employee("Cu", "Chulain", "gaebolg@gmail.com");
+    Shift shift;
+
 
 
 
@@ -43,37 +45,43 @@ public class WorkDaysScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_days_screen);
 
+        final String uidemployee = getIntent().getExtras().getString("uidemployee");
+
         database = FirebaseDatabase.getInstance();
-        shifts = database.getReference("Users").child("employee");
+        shifts = database.getReference("Users/employee");
 
         shiftCalendar = findViewById(R.id.cvShifts);
         edtChooseShiftStart = findViewById(R.id.edtChooseShiftStart);
         edtChooseShiftEnd = findViewById(R.id.edtChooseShiftEnd);
         btnAddShift = findViewById(R.id.btnAddShift);
 
+        shiftCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                String startHours = edtChooseShiftStart.getText().toString();
+                String endHours = edtChooseShiftEnd.getText().toString();
+                String hours = startHours + " to " + endHours;
+                shift = new Shift(String.valueOf(month), String.valueOf(dayOfMonth),hours);
+
+            }
+        });
+
 
         btnAddShift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shiftCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                shifts.child(uidemployee).child("Shifts").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                        String hours = Integer.toString((Integer.parseInt(edtChooseShiftStart.getText().toString()) - Integer.parseInt(edtChooseShiftEnd.getText().toString())));
-                        final Shift shift = new Shift(Integer.toString(month), Integer.toString(dayOfMonth), hours);
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        dataSnapshot.child(shift.getDate()).getRef().setValue(shift.toString());
+                    }
 
-                        shifts.child(uidemployee).addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                dataSnapshot.getValue(Employee.class).addShift(shift);
-                            }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
                     }
                 });
+
             }
         });
 

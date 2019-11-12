@@ -14,6 +14,30 @@ public class Shift{
 
     public Shift(){}
 
+    public String getMonth() {
+        return month;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getHours() {
+        return hours;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setHours(String hours) {
+        this.hours = hours;
+    }
+
     public String toString(){
         return this.month + ":" + this.date + ":" + this.hours;
     }

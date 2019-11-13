@@ -4,4 +4,9 @@
         <item>patient</item>
         <item>employee</item>
     </string-array>
+
+    <string-array name="operatinghours">
+        <item>AM</item>
+        <item>PM</item>
+    </string-array>
 </resources>

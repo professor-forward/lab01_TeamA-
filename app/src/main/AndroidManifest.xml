@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewShiftScreen"></activity>
+        <activity android:name=".ClinicOperatingHours"></activity>
+        <activity android:name=".ViewShiftScreen" />
         <activity android:name=".ClinicInfoScreen" />
         <activity android:name=".ClinicServiceScreen" />
         <activity android:name=".WorkDaysScreen" />

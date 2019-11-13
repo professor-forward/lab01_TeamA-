@@ -11,8 +11,7 @@
         android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
         android:gravity="center"
         android:inputType="textPersonName"
@@ -20,15 +19,16 @@
         android:textColor="@color/colorAccent"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="55dp" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/edtClinicAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:ems="10"
         android:hint="Enter the Address"
         android:inputType="text"
@@ -36,41 +36,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edtClinicOpeningHours"
-        android:layout_width="111dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="260dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginRight="140dp"
-        android:ems="10"
-        android:hint="Start"
-        android:gravity="center"
-        android:inputType="none"
-        android:focusable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edtClinicClosingHours"
-        android:layout_width="111dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="260dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:hint="End"
-        android:gravity="center"
-        android:inputType="none"
-        android:focusable="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvServiceName3"
         android:layout_width="68dp"
         android:layout_height="25dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="124dp"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:text="Address"
@@ -79,10 +51,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvServiceName"
+        android:id="@+id/tvClinicName"
         android:layout_width="68dp"
         android:layout_height="25dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:text="Name"
@@ -94,22 +66,10 @@
         android:id="@+id/tvServiceName4"
         android:layout_width="68dp"
         android:layout_height="25dp"
-        android:layout_marginTop="208dp"
+        android:layout_marginTop="184dp"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:text="Phone"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/edtClinicName"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvServiceName5"
-        android:layout_width="68dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="268dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="20dp"
-        android:text="Hours"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/edtClinicName"
         app:layout_constraintTop_toTopOf="parent" />
@@ -118,9 +78,9 @@
         android:id="@+id/edtClinicName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:ems="10"
         android:hint="Enter the Clinic Name"
         android:inputType="text"
@@ -132,9 +92,9 @@
         android:id="@+id/edtClinicPhoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:ems="10"
         android:hint="Enter the Phone Number"
         android:inputType="text"
@@ -142,25 +102,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnGoToSetMyHours"
-        android:layout_width="127dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="448dp"
-        android:text="Set My Hours"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnSaveClinicInfoChanges"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="512dp"
-        android:text="Save Changes"
+        android:id="@+id/btnGoToSetClinicHours"
+        android:layout_width="127dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginTop="528dp"
+        android:text="Set Clinic Hours"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -168,12 +118,14 @@
         android:id="@+id/btnToSetPaymentTypes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginLeft="104dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="420dp"
         android:text="Set Payment Types"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

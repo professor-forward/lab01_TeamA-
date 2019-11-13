@@ -1,12 +1,15 @@
 <resources>
+    <!-- Spinner for the drop down menu on sign up -->
     <string name="app_name">WalkInClinic</string>
     <string-array name="occupation">
         <item>patient</item>
         <item>employee</item>
     </string-array>
 
+    <!-- Spinner for the drop down menu on operating hours -->
     <string-array name="operatinghours">
-        <item>AM</item>
-        <item>PM</item>
+        <item>Normal Hours: 8AM - 8PM</item>
+        <item>Holiday Hours: 10AM - 2PM</item>
+        <item>Disaster Hours: Open 24 hours </item>
     </string-array>
 </resources>

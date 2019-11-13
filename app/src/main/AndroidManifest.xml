@@ -18,7 +18,6 @@
         <activity android:name=".ManageServices" />
         <activity android:name=".ManageUsers" />
         <activity android:name=".ManageUsersPopUp" />
-        <activity android:name=".DeleteClientScreen" />
         <activity android:name=".ServiceScreen" />
         <activity android:name=".AdministratorScreen" />
         <activity android:name=".EmployeeScreen" />

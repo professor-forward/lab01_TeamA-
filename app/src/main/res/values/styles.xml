@@ -6,12 +6,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- AndroidManifest.xml needs to record the addition-->
+        <item name="android:spinnerItemStyle">@style/spOperatingHourColour</item>
     </style>
 
-    <style name="TimePickerTheme" parent="Theme.AppCompat.Light.Dialog">
-        <item name="colorAccent">@color/colorPrimary</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <!-- Change colour text of operating hours spinner-->
+    <style name="spOperatingHourColour" parent="@android:style/Widget.DropDownItem.Spinner">
+        <item name="android:textColor">#FFFFFF</item>
     </style>
+
+
 
 </resources>

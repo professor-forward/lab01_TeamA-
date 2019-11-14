@@ -48,7 +48,7 @@ public class WorkDaysScreen extends AppCompatActivity {
         final String uidemployee = getIntent().getExtras().getString("uidemployee");
 
         database = FirebaseDatabase.getInstance();
-        shifts = database.getReference("Users/employee");
+        shifts = database.getReference("Shifts");
 
         shiftCalendar = findViewById(R.id.cvShifts);
         edtChooseShiftStart = findViewById(R.id.edtChooseShiftStart);
@@ -70,10 +70,10 @@ public class WorkDaysScreen extends AppCompatActivity {
         btnAddShift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shifts.child(uidemployee).child("Shifts").addListenerForSingleValueEvent(new ValueEventListener() {
+                shifts.child(uidemployee).child(shift.getDate()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        dataSnapshot.child(shift.getDate()).getRef().setValue(shift.toString());
+                        dataSnapshot.getRef().setValue(shift.toString());
                     }
 
                     @Override

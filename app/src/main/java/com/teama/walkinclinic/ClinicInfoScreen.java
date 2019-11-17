@@ -45,6 +45,8 @@ public class ClinicInfoScreen extends AppCompatActivity {
             }
         });
 
+        
+
 
 
 

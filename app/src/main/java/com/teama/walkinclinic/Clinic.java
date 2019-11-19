@@ -2,44 +2,63 @@ package com.teama.walkinclinic;
 
 public class Clinic {
 
-    static String clinicName;
-    static String clinicAddress;
-    static String phoneNumber;
-    static String clinicOpenHours;
+    String clinicName;
+    String clinicAddress;
+    String clinicPhoneNumber;
+    String clinicOpenHours;
+    boolean clinicCredit;
+    boolean clinicDebit;
+    boolean clinicBitcoin;
+
+
+    public Clinic(String clinicName, String clinicAddress, String clinicPhoneNumber, String clinicOpenHours, boolean clinicCredit, boolean clinicDebit, boolean clinicBitcoin) {
+        this.clinicName = clinicName;
+        this.clinicAddress = clinicAddress;
+        this.clinicPhoneNumber = clinicPhoneNumber;
+        this.clinicOpenHours = clinicOpenHours;
+
+        this.clinicCredit = clinicCredit;
+        this.clinicDebit = clinicDebit;
+        this.clinicBitcoin = clinicBitcoin;
+
+    }
 
     public Clinic(){}
 
-    public static String getClinicName() {
+    public String getClinicName() {
         return clinicName;
     }
 
-    public static String getClinicAddress() {
+    public String getClinicAddress() {
         return clinicAddress;
     }
 
-    public static String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhoneNumber() {
+        return clinicPhoneNumber;
     }
 
-    public static String getClinicOpenHours() {
+    public String getClinicOpenHours() {
         return clinicOpenHours;
     }
 
-    public static void setClinicName(String clinicName) {
-        Clinic.clinicName = clinicName;
+    public void setClinicName(String clinicName) {
+        this.clinicName = clinicName;
     }
 
-    public static void setClinicAddress(String clinicAddress) {
-        Clinic.clinicAddress = clinicAddress;
+    public void setClinicAddress(String clinicAddress) {
+        this.clinicAddress = clinicAddress;
     }
 
-    public static void setPhoneNumber(String phoneNumber) {
-        Clinic.phoneNumber = phoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.clinicPhoneNumber = phoneNumber;
     }
 
-    public static void setClinicOpenHours(String clinicOpenHours) {
-        Clinic.clinicOpenHours = clinicOpenHours;
+    public void setClinicOpenHours(String clinicOpenHours) {
+        this.clinicOpenHours = clinicOpenHours;
     }
 
+    public String toString(){
+        return this.clinicName + " located at " + this.clinicAddress;
+    }
 
 }

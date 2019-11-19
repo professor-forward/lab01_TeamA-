@@ -12,7 +12,7 @@
 
     <!-- Change colour text of operating hours spinner-->
     <style name="spOperatingHourColour" parent="@android:style/Widget.DropDownItem.Spinner">
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">#000000</item>
     </style>
 
 

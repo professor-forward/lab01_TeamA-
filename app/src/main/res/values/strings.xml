@@ -8,8 +8,8 @@
 
     <!-- Spinner for the drop down menu on operating hours -->
     <string-array name="operatinghours">
-        <item>Normal Hours: 8AM - 8PM</item>
-        <item>Holiday Hours: 10AM - 2PM</item>
-        <item>Disaster Hours: Open 24 hours </item>
+        <item>Regular Clinic Hours: 8AM - 8PM</item>
+        <item>Speciality Clinic Hours: 10AM - 2PM</item>
+        <item>Emergency Clinic Hours: Open 24 hours </item>
     </string-array>
 </resources>

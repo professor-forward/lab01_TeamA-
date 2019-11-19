@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.app.AlertDialog;
 
-
+/*
 public class ClinicOperatingHours extends AppCompatActivity {
     AlertDialog adgSaveChanges;
     Button btnSaveClinicInfoChanges;
@@ -38,24 +38,7 @@ public class ClinicOperatingHours extends AppCompatActivity {
         spOperatingHours = findViewById(R.id.spOperatingHours);
         hoursOperating = spOperatingHours.getSelectedItem().toString();
 
-        adgSaveChanges = new AlertDialog.Builder(ClinicOperatingHours.this).create();
-
-        spOperatingHours.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                hoursOperating = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
-
-
-        btnSaveClinicInfoChanges.setOnClickListener(new View.OnClickListener() {
+        btnSaveClinicInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -96,6 +79,11 @@ public class ClinicOperatingHours extends AppCompatActivity {
 
             }
         });
+
+
+
+
+
 
         btnGoToSetMyHours.setOnClickListener(new View.OnClickListener() {
             @Override

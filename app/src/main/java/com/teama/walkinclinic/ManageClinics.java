@@ -62,5 +62,19 @@ public class ManageClinics extends AppCompatActivity {
             }
         });
 
+        lvClinics.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Clinic clinic = clinicsList.get(i);
+
+                Intent s = new Intent(getApplicationContext(), ClinicServiceScreen.class);
+                s.putExtra("clinic_name",clinic.getClinicName());
+
+                /* I am starting the pop up this way so that it can send back information while removing itself from the activity stack. Otherwise,
+                I end up with a massive stack of ManageUsers and ManageUsersPopUp activities */
+                startActivityForResult(s,1);
+            }
+        });
+
     }
 }

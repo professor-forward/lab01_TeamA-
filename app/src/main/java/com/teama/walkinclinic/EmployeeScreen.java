@@ -31,7 +31,6 @@ public class EmployeeScreen extends AppCompatActivity {
     DatabaseReference userEmployee;
 
     private Button infoButton;
-    private Button servicesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +43,6 @@ public class EmployeeScreen extends AppCompatActivity {
         userEmployee = database.getReference("Users/employee");
 
         infoButton = (Button) findViewById(R.id.btnToInfo);
-        servicesButton = (Button) findViewById(R.id.btnToServices);
 
         final String uidemployee = getIntent().getExtras().getString("uid");
 
@@ -56,16 +54,6 @@ public class EmployeeScreen extends AppCompatActivity {
                 startActivity(s);
             }
         });
-
-        servicesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent s = new Intent(getApplicationContext(), ClinicServiceScreen.class);
-                startActivity(s);
-            }
-        });
-
-
 
         userEmployee.child(uidemployee).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

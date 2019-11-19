@@ -19,9 +19,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ClinicServiceScreen extends AppCompatActivity {
+
 
     private DatabaseReference activeServicesRef;
     private DatabaseReference availableServicesRef;
@@ -39,9 +41,10 @@ public class ClinicServiceScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_service_screen);
 
-        activeServicesRef = FirebaseDatabase.getInstance().getReference("ActiveServices");
-        availableServicesRef = FirebaseDatabase.getInstance().getReference("Services");
+        final String clinicName = getIntent().getExtras().getString("clinic_name");
 
+        activeServicesRef = FirebaseDatabase.getInstance().getReference("Clinics").child(clinicName).child("ActiveServices");
+        availableServicesRef = FirebaseDatabase.getInstance().getReference("Services");
 
         activeServicesListView = findViewById(R.id.activeServicesListView);
         availableServicesListView = findViewById(R.id.availableServicesListView);
@@ -100,9 +103,9 @@ public class ClinicServiceScreen extends AppCompatActivity {
                         // remove current active clinic services
                         activeServicesRef.getRef().removeValue();
 
-                        // rebuild ActiveServices node
+                        /* rebuild ActiveServices node
                         activeServicesRef = FirebaseDatabase.getInstance().getReference("ActiveServices");
-
+                        */
                         for(Service s : activeServices)
                         {
                             activeServicesRef.child(s.getName()).setValue(s);

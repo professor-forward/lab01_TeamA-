@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".PickAClinicScreen"></activity>
+        <activity android:name=".ShiftDirectingScreen" />
         <activity android:name=".ManageClinics" />
         <activity android:name=".ViewShiftScreen" />
         <activity android:name=".ClinicInfoScreen" />

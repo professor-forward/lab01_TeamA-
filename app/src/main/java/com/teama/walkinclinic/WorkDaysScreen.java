@@ -30,12 +30,17 @@ public class WorkDaysScreen extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference shifts;
+    DatabaseReference specificClinic;
     CalendarView shiftCalendar;
     EditText edtChooseShiftStart;
     EditText edtChooseShiftEnd;
     Button btnAddShift;
+    TextView tvSpecificClinicOperatingHours;
+    TextView tvSpecificClinicName;
 
     Shift shift;
+
+    Clinic clinic;
 
 
 
@@ -46,14 +51,42 @@ public class WorkDaysScreen extends AppCompatActivity {
         setContentView(R.layout.activity_work_days_screen);
 
         final String uidemployee = getIntent().getExtras().getString("uidemployee");
+        final String clinicName = getIntent().getExtras().getString("clinic_name");
 
-        database = FirebaseDatabase.getInstance();
-        shifts = database.getReference("Shifts");
+
 
         shiftCalendar = findViewById(R.id.cvShifts);
         edtChooseShiftStart = findViewById(R.id.edtChooseShiftStart);
         edtChooseShiftEnd = findViewById(R.id.edtChooseShiftEnd);
         btnAddShift = findViewById(R.id.btnAddShift);
+
+        tvSpecificClinicOperatingHours = findViewById(R.id.tvSpecificClinicOperatingHours);
+        tvSpecificClinicName = findViewById(R.id.tvSpecificClinicName);
+
+
+        database = FirebaseDatabase.getInstance();
+        shifts = database.getReference("Shifts");
+        specificClinic = database.getReference("Clinics").child(clinicName);
+
+
+
+        specificClinic.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                clinic = dataSnapshot.getValue(Clinic.class);
+                tvSpecificClinicOperatingHours.setText(clinic.getClinicOperatingHours());
+                tvSpecificClinicName.setText(clinic.getClinicName());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
         shiftCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override

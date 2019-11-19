@@ -4,6 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewShiftScreen">
+    android:background="@drawable/signupbackground"
+    tools:context=".ManageShiftsScreen">
 
+    <ListView
+        android:id="@+id/lvShifts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="118dp"
+        tools:layout_editor_absoluteY="197dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

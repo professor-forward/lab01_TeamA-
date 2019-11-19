@@ -5,11 +5,13 @@ public class Shift{
     String month;
     String date;
     String hours;
+    String clinicName;
 
-    public Shift(String month, String date, String hours){
+    public Shift(String month, String date, String hours, String clinicName){
         this.month = month;
         this.date = date;
         this.hours = hours;
+        this.clinicName = clinicName;
     }
 
     public Shift(){}
@@ -26,6 +28,12 @@ public class Shift{
         return hours;
     }
 
+    public String getClinicName() {
+        return clinicName;
+    }
+
+
+
     public void setMonth(String month) {
         this.month = month;
     }
@@ -38,7 +46,11 @@ public class Shift{
         this.hours = hours;
     }
 
+    public void setClinicName(String clinicName) {
+        this.clinicName = clinicName;
+    }
+
     public String toString(){
-        return this.month + ":" + this.date + ":" + this.hours;
+        return this.clinicName +":"+ this.date +":"+ this.hours +":"+ this.month;
     }
 }

@@ -94,7 +94,7 @@ public class WorkDaysScreen extends AppCompatActivity {
                 String startHours = edtChooseShiftStart.getText().toString();
                 String endHours = edtChooseShiftEnd.getText().toString();
                 String hours = startHours + " to " + endHours;
-                shift = new Shift(String.valueOf(month), String.valueOf(dayOfMonth),hours);
+                shift = new Shift(String.valueOf(month), String.valueOf(dayOfMonth),hours, clinicName);
 
             }
         });
@@ -103,7 +103,7 @@ public class WorkDaysScreen extends AppCompatActivity {
         btnAddShift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shifts.child(uidemployee).child(shift.getDate()).addListenerForSingleValueEvent(new ValueEventListener() {
+                shifts.child(uidemployee).child(clinicName).child(shift.getDate()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         dataSnapshot.getRef().setValue(shift.toString());

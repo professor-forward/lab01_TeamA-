@@ -28,7 +28,7 @@ import java.text.DateFormatSymbols;
 public class ShiftDirectingScreen extends AppCompatActivity {
 
     Button btnToAddShift;
-
+    Button btnToViewAllMyShifts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +37,7 @@ public class ShiftDirectingScreen extends AppCompatActivity {
 
         final String uidemployee = getIntent().getExtras().getString("uidemployee");
         btnToAddShift = findViewById(R.id.btnToAddShift);
+        btnToViewAllMyShifts = findViewById(R.id.btnToViewAllMyShifts);
 
 
         btnToAddShift.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +48,15 @@ public class ShiftDirectingScreen extends AppCompatActivity {
                 s.putExtra("uidemployee",uidemployee);
                 startActivity(s);
 
+            }
+        });
+
+        btnToViewAllMyShifts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent s = new Intent(getApplicationContext(), ManageShiftsScreen.class);
+                s.putExtra("uidemployee", uidemployee);
+                startActivity(s);
             }
         });
     }

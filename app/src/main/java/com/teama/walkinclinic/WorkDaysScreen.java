@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.CalendarView;
@@ -36,6 +37,8 @@ public class WorkDaysScreen extends AppCompatActivity {
     Button btnAddShift;
     TextView tvSpecificClinicOperatingHours;
     TextView tvSpecificClinicName;
+    Spinner spinnerFirstAmOrPm;
+    Spinner spinnerSecondAmOrPm;
 
     Shift shift;
 
@@ -49,8 +52,9 @@ public class WorkDaysScreen extends AppCompatActivity {
     String specificDay;
     String specificYear;
 
-    int minHours;
-    int maxHours;
+
+
+
 
 
 
@@ -73,8 +77,11 @@ public class WorkDaysScreen extends AppCompatActivity {
         shiftCalendar.setMinDate(shiftCalendar.getDate());
         tvSpecificClinicOperatingHours = findViewById(R.id.tvSpecificClinicOperatingHours);
         tvSpecificClinicName = findViewById(R.id.tvSpecificClinicName);
+        spinnerFirstAmOrPm = findViewById(R.id.spinnerFirstAmOrPm);
+        spinnerSecondAmOrPm = findViewById(R.id.spinnerSecondAmOrPm);
 
-
+        final String startAmOrPm = spinnerFirstAmOrPm.getSelectedItem().toString();
+        final String endAmOrPm = spinnerSecondAmOrPm.getSelectedItem().toString();
 
 
         database = FirebaseDatabase.getInstance();
@@ -87,8 +94,7 @@ public class WorkDaysScreen extends AppCompatActivity {
                 clinic = dataSnapshot.getValue(Clinic.class);
                 tvSpecificClinicOperatingHours.setText(clinic.getClinicOperatingHours());
                 tvSpecificClinicName.setText(clinic.getClinicName());
-                minHours = clinic.clinicMinHours();
-                maxHours = clinic.clinicMaxHours();
+
             }
 
             @Override
@@ -124,9 +130,6 @@ public class WorkDaysScreen extends AppCompatActivity {
                 startHours = edtChooseShiftStart.getText().toString();
                 endHours = edtChooseShiftEnd.getText().toString();
                 hours = startHours + " to " + endHours;
-
-
-
 
 
                 shift = new Shift(specificMonth, specificDay, hours, clinicName );

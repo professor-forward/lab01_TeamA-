@@ -92,17 +92,23 @@
         android:id="@+id/spinnerFirstAmOrPm"
         android:layout_width="wrap_content"
         android:layout_height="23dp"
+        android:layout_marginStart="256dp"
+        android:layout_marginLeft="256dp"
+        android:layout_marginTop="412dp"
         android:entries="@array/amOrPm"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="414dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerSecondAmOrPm"
         android:layout_width="wrap_content"
         android:layout_height="23dp"
+        android:layout_marginStart="256dp"
+        android:layout_marginLeft="256dp"
+        android:layout_marginTop="464dp"
         android:entries="@array/amOrPm"
-        tools:layout_editor_absoluteX="257dp"
-        tools:layout_editor_absoluteY="463dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

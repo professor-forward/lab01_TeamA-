@@ -126,6 +126,11 @@ public class WorkDaysScreen extends AppCompatActivity {
                     return;
                 }
 
+                if(edtChooseShiftStart.getText().toString().equals("") || edtChooseShiftEnd.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"Please select operating hours", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
 
 
 

@@ -39,7 +39,7 @@ public class ClinicInfoScreen extends AppCompatActivity {
     Button btnSaveClinicInfo;
     Button btnViewAllClinic;
     Button btnUpdateClinicInfo;
-    AlertDialog adgSaveChanges;
+    AlertDialog adgUpdateChanges;
     Spinner spOperatingHours;
     int startHourOfClinic;
     int closeHourOfClinic;
@@ -73,7 +73,7 @@ public class ClinicInfoScreen extends AppCompatActivity {
         btnViewAllClinic = findViewById(R.id.btnViewAllClinic);
         btnUpdateClinicInfo = findViewById(R.id.btnUpdateClinicInfo);
 
-        adgSaveChanges = new AlertDialog.Builder(ClinicInfoScreen.this).create();
+        adgUpdateChanges = new AlertDialog.Builder(ClinicInfoScreen.this).create();
 
 
         edtClinicName = findViewById((R.id.edtClinicName));
@@ -99,12 +99,28 @@ public class ClinicInfoScreen extends AppCompatActivity {
 
 
                 final String clinicName = edtClinicName.getText().toString();
+                if(clinicName.trim().matches("")){
+                    Toast.makeText(getApplicationContext(),"You did not enter a Clinic name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 final String clinicAddress = edtClinicAddress.getText().toString();
+                if(clinicAddress.trim().matches("")){
+                    Toast.makeText(getApplicationContext(),"You did not enter a valid Address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 final String clinicPhoneNumber = edtClinicPhoneNumber.getText().toString();
+                if(clinicPhoneNumber.trim().matches("")){
+                    Toast.makeText(getApplicationContext(),"You did not enter a valid Phone Number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 final String hoursOperating = spOperatingHours.getSelectedItem().toString();
                 boolean debitCard = cbDebitCard.isChecked();
                 boolean creditCard = cbCreditCard.isChecked();
                 boolean bitcoin = cbBitcoin.isChecked();
+                if(bitcoin==false&&debitCard==false&&creditCard==false){
+                    Toast.makeText(getApplicationContext(),"You did not set a payment type", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
 
                 clinic = new Clinic(clinicName, clinicAddress, clinicPhoneNumber, hoursOperating,debitCard,creditCard,bitcoin );
@@ -134,21 +150,33 @@ public class ClinicInfoScreen extends AppCompatActivity {
         btnUpdateClinicInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final String clinicName = edtClinicName.getText().toString();
+                if(clinicName.trim().matches("")){
+                    Toast.makeText(getApplicationContext(),"You did not enter a Clinic name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                final String clinicAddress = edtClinicAddress.getText().toString();
+                final String clinicPhoneNumber = edtClinicPhoneNumber.getText().toString();
+                final String hoursOperating = spOperatingHours.getSelectedItem().toString();
+
+
+                final boolean debitCard = cbDebitCard.isChecked();
+                final boolean creditCard = cbCreditCard.isChecked();
+                final boolean bitcoin = cbBitcoin.isChecked();
+
+                if(bitcoin==false&&debitCard==false&&creditCard==false){
+                    Toast.makeText(getApplicationContext(),"You need to set a payment type", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
 
                 clinics.child(edtClinicName.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(!dataSnapshot.exists()){
-                            Toast.makeText(getApplicationContext(), "This Clinic does not exist, please add it first", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"That Clinic has not been created yet", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                        final String clinicName = edtClinicName.getText().toString();
-                        final String clinicAddress = edtClinicAddress.getText().toString();
-                        final String clinicPhoneNumber = edtClinicPhoneNumber.getText().toString();
-                        final String hoursOperating = spOperatingHours.getSelectedItem().toString();
-                        boolean debitCard = cbDebitCard.isChecked();
-                        boolean creditCard = cbCreditCard.isChecked();
-                        boolean bitcoin = cbBitcoin.isChecked();
 
                         if(dataSnapshot.child("clinicOperatingHours").getValue()!=hoursOperating){
                             //Delete the time
@@ -162,6 +190,12 @@ public class ClinicInfoScreen extends AppCompatActivity {
                                             }
                                         }
                                     }
+                                    dataSnapshot.child("clinicAddress").getRef().setValue(clinicAddress);
+                                    dataSnapshot.child("clinicOperatingHours").getRef().setValue(hoursOperating);
+                                    dataSnapshot.child("phoneNumber").getRef().setValue(clinicPhoneNumber);
+                                    dataSnapshot.child("clinicBitcoin").getRef().setValue(bitcoin);
+                                    dataSnapshot.child("clinicCredit").getRef().setValue(creditCard);
+                                    dataSnapshot.child("clinicDebit").getRef().setValue(debitCard);
                                 }
 
                                 @Override
@@ -171,12 +205,7 @@ public class ClinicInfoScreen extends AppCompatActivity {
                             });
                         }
 
-                        dataSnapshot.child("clinicAddress").getRef().setValue(clinicAddress);
-                        dataSnapshot.child("clinicOperatingHours").getRef().setValue(hoursOperating);
-                        dataSnapshot.child("phoneNumber").getRef().setValue(clinicPhoneNumber);
-                        dataSnapshot.child("clinicBitcoin").getRef().setValue(bitcoin);
-                        dataSnapshot.child("clinicCredit").getRef().setValue(creditCard);
-                        dataSnapshot.child("clinicDebit").getRef().setValue(debitCard);
+
 
 
 

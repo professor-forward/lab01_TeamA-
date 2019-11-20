@@ -106,7 +106,7 @@
         android:layout_marginStart="256dp"
         android:layout_marginLeft="256dp"
         android:layout_marginTop="464dp"
-        android:entries="@array/amOrPm"
+        android:entries="@array/amOrPm2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

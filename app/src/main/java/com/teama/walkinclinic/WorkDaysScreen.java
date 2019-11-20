@@ -44,8 +44,8 @@ public class WorkDaysScreen extends AppCompatActivity {
 
     Clinic clinic;
 
-    String startHours;
-    String endHours;
+
+
     String hours;
 
     String specificMonth;
@@ -80,8 +80,7 @@ public class WorkDaysScreen extends AppCompatActivity {
         spinnerFirstAmOrPm = findViewById(R.id.spinnerFirstAmOrPm);
         spinnerSecondAmOrPm = findViewById(R.id.spinnerSecondAmOrPm);
 
-        final String startAmOrPm = spinnerFirstAmOrPm.getSelectedItem().toString();
-        final String endAmOrPm = spinnerSecondAmOrPm.getSelectedItem().toString();
+
 
 
         database = FirebaseDatabase.getInstance();
@@ -92,8 +91,10 @@ public class WorkDaysScreen extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 clinic = dataSnapshot.getValue(Clinic.class);
+                hours = clinic.getClinicOperatingHours();
                 tvSpecificClinicOperatingHours.setText(clinic.getClinicOperatingHours());
                 tvSpecificClinicName.setText(clinic.getClinicName());
+
 
             }
 
@@ -109,7 +110,7 @@ public class WorkDaysScreen extends AppCompatActivity {
         shiftCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                specificMonth = String.valueOf(month);
+                specificMonth = String.valueOf(month+1);
                 specificDay = String.valueOf(dayOfMonth);
                 specificYear = String.valueOf(year);
 
@@ -127,9 +128,49 @@ public class WorkDaysScreen extends AppCompatActivity {
 
 
 
-                startHours = edtChooseShiftStart.getText().toString();
-                endHours = edtChooseShiftEnd.getText().toString();
-                hours = startHours + " to " + endHours;
+
+
+                if(hours.equals("Regular Clinic Hours: 8AM - 8PM")){
+                    int startHours = Integer.valueOf(edtChooseShiftStart.getText().toString());
+                    int endHours = Integer.valueOf(edtChooseShiftEnd.getText().toString());
+                    final String startAmOrPm = spinnerFirstAmOrPm.getSelectedItem().toString();
+                    final String endAmOrPm = spinnerSecondAmOrPm.getSelectedItem().toString();
+                    if(startAmOrPm.equals("pm") && startHours<12){startHours=startHours+12;}
+                    if(endAmOrPm.equals("pm") && endHours<12){endHours=endHours+12;}
+                    if(endHours-startHours<0 || startHours<8 || endHours>20){
+                        Toast.makeText(getApplicationContext(),"Regular clinic hours is not open in this hours", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    hours = "Working Regular Clinic Hours: " + edtChooseShiftStart.getText().toString() + startAmOrPm +" to " + edtChooseShiftEnd.getText().toString() + endAmOrPm;
+                }
+
+                else if (hours.equals("Specialty Clinic Hours: 10AM - 2PM")){
+                    int startHours = Integer.valueOf(edtChooseShiftStart.getText().toString());
+                    int endHours = Integer.valueOf(edtChooseShiftEnd.getText().toString());
+                    final String startAmOrPm = spinnerFirstAmOrPm.getSelectedItem().toString();
+                    final String endAmOrPm = spinnerSecondAmOrPm.getSelectedItem().toString();
+                    if(startAmOrPm.equals("pm") && startHours<12){startHours=startHours+12;}
+                    if(endAmOrPm.equals("pm") && endHours<12){endHours=endHours+12;}
+                    if(endHours-startHours<0 || startHours<10 || endHours>14){
+                        Toast.makeText(getApplicationContext(),"Speciality clinic hours is not open in this hours", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    hours = "Working Speciality Clinic Hours: " + edtChooseShiftStart.getText().toString() + startAmOrPm +" to " + edtChooseShiftEnd.getText().toString() + endAmOrPm;
+                }
+
+                else if(hours.equals("Emergency Clinic Hours: Open 24 hours")){
+                    int startHours = Integer.valueOf(edtChooseShiftStart.getText().toString());
+                    int endHours = Integer.valueOf(edtChooseShiftEnd.getText().toString());
+                    final String startAmOrPm = spinnerFirstAmOrPm.getSelectedItem().toString();
+                    final String endAmOrPm = spinnerSecondAmOrPm.getSelectedItem().toString();
+                    if(startHours>12 || endHours>12 || startHours<0 || endHours<0){
+                        Toast.makeText(getApplicationContext(),"Incorrect time for emergency clinic", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    hours = "Working Emergency Clinic Hours: " + edtChooseShiftStart.getText().toString() + startAmOrPm +" to " + edtChooseShiftEnd.getText().toString() + endAmOrPm;
+                }
+
+
 
 
                 shift = new Shift(specificMonth, specificDay, hours, clinicName );

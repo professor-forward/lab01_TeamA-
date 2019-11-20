@@ -6,11 +6,12 @@ public class Clinic {
     String clinicAddress;
     String clinicPhoneNumber;
     String clinicOperatingHours;
+
+
+
     boolean clinicCredit;
     boolean clinicDebit;
     boolean clinicBitcoin;
-    int openingHours;
-    int closingHours;
 
 
     public Clinic(String clinicName, String clinicAddress, String clinicPhoneNumber, String clinicOperatingHours, boolean clinicCredit, boolean clinicDebit, boolean clinicBitcoin) {
@@ -23,21 +24,11 @@ public class Clinic {
         this.clinicDebit = clinicDebit;
         this.clinicBitcoin = clinicBitcoin;
 
-        if (clinicOperatingHours.equals("Regular Clinic Hours: 8AM - 8PM")) {
-            this.openingHours = 8;
-            this.closingHours = 20;
-        }
-        else if(clinicOperatingHours.equals("Specialty Clinic Hours: 10AM - 2PM")){
-            this.openingHours = 10;
-            this.closingHours = 14;
-        }
-        else{
-            this.openingHours = 24;
-            this.closingHours = 24;
+
         }
 
 
-    }
+
 
     public Clinic(){}
 
@@ -57,13 +48,7 @@ public class Clinic {
         return clinicOperatingHours;
     }
 
-    public int getOpeningHours(){
-        return openingHours;
-    }
 
-    public int getClosingHours(){
-        return closingHours;
-    }
 
     public void setClinicName(String clinicName) {
         this.clinicName = clinicName;
@@ -80,14 +65,50 @@ public class Clinic {
     public void setClinicOperatingHours(String clinicOperatingHours) {
         this.clinicOperatingHours = clinicOperatingHours;
     }
-
-    public void setOpeningHours(int openingHours){
-        this.openingHours = openingHours;
+    public boolean isClinicCredit() {
+        return clinicCredit;
     }
 
-    public void setClosingHours(int closingHours){
-        this.closingHours = closingHours;
+    public void setClinicCredit(boolean clinicCredit) {
+        this.clinicCredit = clinicCredit;
     }
+
+    public boolean isClinicDebit() {
+        return clinicDebit;
+    }
+
+    public void setClinicDebit(boolean clinicDebit) {
+        this.clinicDebit = clinicDebit;
+    }
+
+    public boolean isClinicBitcoin() {
+        return clinicBitcoin;
+    }
+
+    public void setClinicBitcoin(boolean clinicBitcoin) {
+        this.clinicBitcoin = clinicBitcoin;
+    }
+
+    public int clinicMinHours(){
+        if (clinicOperatingHours.equals("Regular Clinic Hours: 8AM - 8PM")) {
+            return 8;
+        }
+        else if(clinicOperatingHours.equals("Specialty Clinic Hours: 10AM - 2PM")){
+            return 10;
+        }
+        else{return 0;}
+    }
+    public int clinicMaxHours(){
+        if (clinicOperatingHours.equals("Regular Clinic Hours: 8AM - 8PM")) {
+            return 20;
+        }
+        else if(clinicOperatingHours.equals("Specialty Clinic Hours: 10AM - 2PM")){
+            return 14;
+        }
+        else{return 24;}
+    }
+
+
 
     public String toString(){
         return this.clinicName + " located at " + this.clinicAddress;

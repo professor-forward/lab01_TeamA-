@@ -50,6 +50,10 @@ public class Shift{
         this.clinicName = clinicName;
     }
 
+
+
+
+
     public String toString(){
         return this.clinicName +":"+ this.date +":"+ this.hours +":"+ this.month;
     }

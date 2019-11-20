@@ -46,18 +46,17 @@ public class ManageShiftsScreen extends AppCompatActivity {
         final String uidemployee = getIntent().getExtras().getString("uidemployee");
 
         database = FirebaseDatabase.getInstance();
-        shifts = database.getReference("Shifts").child(uidemployee);
+        shifts = database.getReference("Shifts");
 
         lvShifts = findViewById(R.id.lvShifts);
         shiftsList = new ArrayList<Shift>();
 
-        shifts.addListenerForSingleValueEvent(new ValueEventListener() {
+        shifts.child(uidemployee).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds: dataSnapshot.getChildren()){
-                    for(DataSnapshot ds0: ds.getChildren() ){
-                        Shift shift = ds0.getValue(Shift.class);
-                    }
+                for(DataSnapshot ds: dataSnapshot.getChildren()) {
+                    Shift shift = ds.getValue(Shift.class);
+                    shiftsList.add(shift);
                 }
 
                 ArrayAdapter<Shift> shiftsAdapter = new ArrayAdapter<Shift>(getApplicationContext(),android.R.layout.simple_list_item_1, shiftsList);

@@ -38,6 +38,7 @@ public class ClinicInfoScreen extends AppCompatActivity {
 
     Button btnSaveClinicInfo;
     Button btnViewAllClinic;
+    Button btnUpdateClinicInfo;
     AlertDialog adgSaveChanges;
     Spinner spOperatingHours;
     int startHourOfClinic;
@@ -70,6 +71,7 @@ public class ClinicInfoScreen extends AppCompatActivity {
 
         btnSaveClinicInfo = findViewById(R.id.btnSaveClinicInfo);
         btnViewAllClinic = findViewById(R.id.btnViewAllClinic);
+        btnUpdateClinicInfo = findViewById(R.id.btnUpdateClinicInfo);
 
         adgSaveChanges = new AlertDialog.Builder(ClinicInfoScreen.this).create();
 
@@ -126,6 +128,68 @@ public class ClinicInfoScreen extends AppCompatActivity {
             public void onClick(View view) {
                 Intent s = new Intent(getApplicationContext(), ManageClinics.class);
                 startActivity(s);
+            }
+        });
+
+        btnUpdateClinicInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                clinics.child(edtClinicName.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(!dataSnapshot.exists()){
+                            Toast.makeText(getApplicationContext(), "This Clinic does not exist, please add it first", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        final String clinicName = edtClinicName.getText().toString();
+                        final String clinicAddress = edtClinicAddress.getText().toString();
+                        final String clinicPhoneNumber = edtClinicPhoneNumber.getText().toString();
+                        final String hoursOperating = spOperatingHours.getSelectedItem().toString();
+                        boolean debitCard = cbDebitCard.isChecked();
+                        boolean creditCard = cbCreditCard.isChecked();
+                        boolean bitcoin = cbBitcoin.isChecked();
+
+                        if(dataSnapshot.child("clinicOperatingHours").getValue()!=hoursOperating){
+                            //Delete the time
+                            FirebaseDatabase.getInstance().getReference("Shifts").addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for(DataSnapshot ds: dataSnapshot.getChildren()){
+                                        for(DataSnapshot ds2: ds.getChildren()){
+                                            if(ds2.getValue(Shift.class).getClinicName().equals(edtClinicName.getText().toString())){
+                                                ds2.getRef().removeValue();
+                                            }
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+
+                        dataSnapshot.child("clinicAddress").getRef().setValue(clinicAddress);
+                        dataSnapshot.child("clinicOperatingHours").getRef().setValue(hoursOperating);
+                        dataSnapshot.child("phoneNumber").getRef().setValue(clinicPhoneNumber);
+                        dataSnapshot.child("clinicBitcoin").getRef().setValue(bitcoin);
+                        dataSnapshot.child("clinicCredit").getRef().setValue(creditCard);
+                        dataSnapshot.child("clinicDebit").getRef().setValue(debitCard);
+
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
             }
         });
 

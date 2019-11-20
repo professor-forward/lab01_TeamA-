@@ -31,7 +31,11 @@ public class EmployeeScreen extends AppCompatActivity {
     DatabaseReference userEmployee;
 
     private Button infoButton;
-    private Button btnToShifts;
+
+
+    Button btnToAddShift;
+    Button btnToViewAllMyShifts;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,9 @@ public class EmployeeScreen extends AppCompatActivity {
         userEmployee = database.getReference("Users/employee");
 
         infoButton = (Button) findViewById(R.id.btnToInfo);
-        btnToShifts = findViewById(R.id.btnToShifts);
+
+        btnToAddShift = findViewById(R.id.btnToAddShift);
+        btnToViewAllMyShifts = findViewById(R.id.btnToViewAllMyShifts);
 
         final String uidemployee = getIntent().getExtras().getString("uid");
 
@@ -57,14 +63,6 @@ public class EmployeeScreen extends AppCompatActivity {
             }
         });
 
-        btnToShifts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent s = new Intent(getApplicationContext(), ShiftDirectingScreen.class );
-                s.putExtra("uidemployee", uidemployee);
-                startActivity(s);
-            }
-        });
 
         userEmployee.child(uidemployee).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -75,6 +73,26 @@ public class EmployeeScreen extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 //extra
+            }
+        });
+
+        btnToAddShift.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent s = new Intent(getApplicationContext(), PickAClinicScreen.class);
+                s.putExtra("uidemployee",uidemployee);
+                startActivity(s);
+
+            }
+        });
+
+        btnToViewAllMyShifts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent s = new Intent(getApplicationContext(), ManageShiftsScreen.class);
+                s.putExtra("uidemployee", uidemployee);
+                startActivity(s);
             }
         });
 

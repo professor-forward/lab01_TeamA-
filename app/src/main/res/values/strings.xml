@@ -12,4 +12,9 @@
         <item>Specialty Clinic Hours: 10AM - 2PM</item>
         <item>Emergency Clinic Hours: Open 24 hours </item>
     </string-array>
+
+    <string-array name="amOrPm">
+        <item>am</item>
+        <item>pm</item>
+    </string-array>
 </resources>

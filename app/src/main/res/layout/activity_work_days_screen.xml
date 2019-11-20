@@ -12,8 +12,8 @@
         android:id="@+id/btnAddShift"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
-        android:layout_marginLeft="132dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginLeft="140dp"
         android:layout_marginTop="512dp"
         android:text="Add Shfit"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,13 +21,13 @@
 
     <CalendarView
         android:id="@+id/cvShifts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="321dp"
+        android:layout_height="301dp"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,9 +35,9 @@
         android:id="@+id/edtChooseShiftStart"
         android:layout_width="138dp"
         android:layout_height="42dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="460dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="404dp"
         android:ems="10"
         android:hint="Shift start time"
         android:inputType="number"
@@ -47,11 +47,11 @@
 
     <EditText
         android:id="@+id/edtChooseShiftEnd"
-        android:layout_width="125dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="460dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_width="138dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="456dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginRight="188dp"
         android:ems="10"
         android:hint="Shift end time"
         android:inputType="number"
@@ -63,14 +63,13 @@
         android:id="@+id/tvSpecificClinicOperatingHours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="404dp"
-        android:hint="CLINIC TIME"
-        android:textSize="20sp"
-        android:textColor="#FFFFFF"
+        android:layout_marginTop="356dp"
         android:autoSizeTextType="uniform"
         android:gravity="center"
+        android:hint="CLINIC TIME"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,16 +77,32 @@
         android:id="@+id/tvSpecificClinicName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:hint="CLINIC NAME"
-        android:textSize="30sp"
-        android:textColor="#FFFFFF"
+        android:layout_marginTop="4dp"
         android:autoSizeTextType="uniform"
         android:gravity="center"
+        android:hint="CLINIC NAME"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerFirstAmOrPm"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:entries="@array/amOrPm"
+        tools:layout_editor_absoluteX="257dp"
+        tools:layout_editor_absoluteY="414dp" />
+
+    <Spinner
+        android:id="@+id/spinnerSecondAmOrPm"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:entries="@array/amOrPm"
+        tools:layout_editor_absoluteX="257dp"
+        tools:layout_editor_absoluteY="463dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,8 +24,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormatSymbols;
-
 public class WorkDaysScreen extends AppCompatActivity {
 
 
@@ -42,6 +41,17 @@ public class WorkDaysScreen extends AppCompatActivity {
 
     Clinic clinic;
 
+    String startHours;
+    String endHours;
+    String hours;
+
+    String specificMonth;
+    String specificDay;
+    String specificYear;
+
+    int minHours;
+    int maxHours;
+
 
 
 
@@ -55,20 +65,21 @@ public class WorkDaysScreen extends AppCompatActivity {
 
 
 
+
         shiftCalendar = findViewById(R.id.cvShifts);
         edtChooseShiftStart = findViewById(R.id.edtChooseShiftStart);
         edtChooseShiftEnd = findViewById(R.id.edtChooseShiftEnd);
         btnAddShift = findViewById(R.id.btnAddShift);
-
+        shiftCalendar.setMinDate(shiftCalendar.getDate());
         tvSpecificClinicOperatingHours = findViewById(R.id.tvSpecificClinicOperatingHours);
         tvSpecificClinicName = findViewById(R.id.tvSpecificClinicName);
+
+
 
 
         database = FirebaseDatabase.getInstance();
         shifts = database.getReference("Shifts");
         specificClinic = database.getReference("Clinics").child(clinicName);
-
-
 
         specificClinic.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -76,7 +87,8 @@ public class WorkDaysScreen extends AppCompatActivity {
                 clinic = dataSnapshot.getValue(Clinic.class);
                 tvSpecificClinicOperatingHours.setText(clinic.getClinicOperatingHours());
                 tvSpecificClinicName.setText(clinic.getClinicName());
-
+                minHours = clinic.clinicMinHours();
+                maxHours = clinic.clinicMaxHours();
             }
 
             @Override
@@ -91,10 +103,9 @@ public class WorkDaysScreen extends AppCompatActivity {
         shiftCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String startHours = edtChooseShiftStart.getText().toString();
-                String endHours = edtChooseShiftEnd.getText().toString();
-                String hours = startHours + " to " + endHours;
-                shift = new Shift(String.valueOf(month), String.valueOf(dayOfMonth),hours, clinicName);
+                specificMonth = String.valueOf(month);
+                specificDay = String.valueOf(dayOfMonth);
+                specificYear = String.valueOf(year);
 
             }
         });
@@ -103,10 +114,29 @@ public class WorkDaysScreen extends AppCompatActivity {
         btnAddShift.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                shifts.child(uidemployee).child(clinicName).child(shift.getDate()).addListenerForSingleValueEvent(new ValueEventListener() {
+                if(specificMonth==null || specificDay==null){
+                    Toast.makeText(getApplicationContext(),"Please select a Month and Day", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+
+
+                startHours = edtChooseShiftStart.getText().toString();
+                endHours = edtChooseShiftEnd.getText().toString();
+                hours = startHours + " to " + endHours;
+
+
+
+
+
+                shift = new Shift(specificMonth, specificDay, hours, clinicName );
+
+
+
+                shifts.child(uidemployee).child(shift.getDate()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        dataSnapshot.getRef().setValue(shift.toString());
+                        dataSnapshot.getRef().setValue(shift);
                     }
 
                     @Override

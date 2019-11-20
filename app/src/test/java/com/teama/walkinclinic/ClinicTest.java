@@ -6,33 +6,52 @@ import static org.junit.Assert.assertEquals;
 
 public class ClinicTest {
     @Test
-    public void checkFirstName(){
-        String firstName = "shirou";
-        String lastName = "emiya";
-        String email = "kanshoubakuya@gmail.com";
-        String password = "triplelinkedcranewings";
-        User allyofjustice = new Patient(firstName, lastName, email);
-        assertEquals("Check firstname of the user", "shirou", allyofjustice.getFirstName());
-
-
+    public void checkClinicName(){
+        String clinicName = "A-";
+        String clinicAddress = "K1N 6N5";
+        String clinicPhoneNumber = "(613) 562-5800 ext. 6568";
+        String clinicOperatingHours = "Working Emergency Clinic Hours: 2am to 8am";
+        boolean clinicCredit = true;
+        boolean clinicDebit = true;
+        boolean clinicBitcoin = true;
+        Clinic clinic = new Clinic(clinicName, clinicAddress, clinicPhoneNumber,clinicOperatingHours, clinicCredit, clinicDebit, clinicBitcoin);
+        assertEquals("Check name of clinic", "A-", clinic.getClinicName());
     }
     @Test
-    public void checkLastName(){
-        String firstName = "shirou";
-        String lastName = "emiya";
-        String email = "kanshoubakuya@gmail.com";
-        String password = "triplelinkedcranewings";
-        User allyofjustice = new Patient(firstName, lastName, email);
-        assertEquals("Check firstname of the user", "emiya", allyofjustice.getLastName());
-
+    public void checkClinicAddress(){
+        String clinicName = "A-";
+        String clinicAddress = "K1N 6N5";
+        String clinicPhoneNumber = "(613) 562-5800 ext. 6568";
+        String clinicOperatingHours = "Working Emergency Clinic Hours: 2am to 8am";
+        boolean clinicCredit = true;
+        boolean clinicDebit = true;
+        boolean clinicBitcoin = true;
+        Clinic clinic = new Clinic(clinicName, clinicAddress, clinicPhoneNumber,clinicOperatingHours, clinicCredit, clinicDebit, clinicBitcoin);
+        assertEquals("Check address of clinic", "K1N 6N5", clinic.getClinicAddress());
     }
     @Test
-    public void checkEmail(){
-        String firstName = "shirou";
-        String lastName = "emiya";
-        String email = "kanshoubakuya@gmail.com";
-        String password = "triplelinkedcranewings";
-        User allyofjustice = new Patient(firstName, lastName, email);
-        assertEquals("Check email of the user", "kanshoubakuya@gmail.com",allyofjustice.getEmailAddress());
+    public void checkPhoneNumber(){
+        String clinicName = "A-";
+        String clinicAddress = "K1N 6N5";
+        String clinicPhoneNumber = "(613) 562-5800 ext. 6568";
+        String clinicOperatingHours = "Working Emergency Clinic Hours: 2am to 8am";
+        boolean clinicCredit = true;
+        boolean clinicDebit = true;
+        boolean clinicBitcoin = true;
+        Clinic clinic = new Clinic(clinicName, clinicAddress, clinicPhoneNumber,clinicOperatingHours, clinicCredit, clinicDebit, clinicBitcoin);
+        assertEquals("Check operating hours of clinic", "(613) 562-5800 ext. 6568", clinic.getPhoneNumber());
     }
+    @Test
+    public void checkOperatingHours(){
+        String clinicName = "A-";
+        String clinicAddress = "K1N 6N5";
+        String clinicPhoneNumber = "(613) 562-5800 ext. 6568";
+        String clinicOperatingHours = "Working Emergency Clinic Hours: 2am to 8am";
+        boolean clinicCredit = true;
+        boolean clinicDebit = true;
+        boolean clinicBitcoin = true;
+        Clinic clinic = new Clinic(clinicName, clinicAddress, clinicPhoneNumber,clinicOperatingHours, clinicCredit, clinicDebit, clinicBitcoin);
+        assertEquals("Check address of clinic", "Working Emergency Clinic Hours: 2am to 8am", clinic.getClinicOperatingHours());
+    }
+
 }

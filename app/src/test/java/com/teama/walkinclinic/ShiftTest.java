@@ -6,33 +6,44 @@ import static org.junit.Assert.assertEquals;
 
 public class ShiftTest {
     @Test
-    public void checkFirstName(){
-        String firstName = "shirou";
-        String lastName = "emiya";
-        String email = "kanshoubakuya@gmail.com";
-        String password = "triplelinkedcranewings";
-        User allyofjustice = new Patient(firstName, lastName, email);
-        assertEquals("Check firstname of the user", "shirou", allyofjustice.getFirstName());
-
-
-    }
-    @Test
-    public void checkLastName(){
-        String firstName = "shirou";
-        String lastName = "emiya";
-        String email = "kanshoubakuya@gmail.com";
-        String password = "triplelinkedcranewings";
-        User allyofjustice = new Patient(firstName, lastName, email);
-        assertEquals("Check firstname of the user", "emiya", allyofjustice.getLastName());
+    public void checkMonth(){
+        String month = "november";
+        String date = "15";
+        String hours = "8AM - 9PM";
+        String clinicName = "A-";
+        Shift shift = new Shift(month,date,hours,clinicName);
+        assertEquals("Check month of shift", "november", shift.getMonth());
 
     }
     @Test
-    public void checkEmail(){
-        String firstName = "shirou";
-        String lastName = "emiya";
-        String email = "kanshoubakuya@gmail.com";
-        String password = "triplelinkedcranewings";
-        User allyofjustice = new Patient(firstName, lastName, email);
-        assertEquals("Check email of the user", "kanshoubakuya@gmail.com",allyofjustice.getEmailAddress());
+    public void checkDate(){
+        String month = "november";
+        String date = "15";
+        String hours = "8AM - 9PM";
+        String clinicName = "A-";
+        Shift shift = new Shift(month,date,hours,clinicName);
+        assertEquals("Check date of shift", "15", shift.getDate());
     }
+    @Test
+    public void checkHours(){
+        String month = "november";
+        String date = "15";
+        String hours = "8AM - 9PM";
+        String clinicName = "A-";
+        Shift shift = new Shift(month,date,hours,clinicName);
+        assertEquals("Check hours of shift", "8AM - 9PM", shift.getHours());
+    }
+    @Test
+    public void checkClinicName(){
+        String month = "november";
+        String date = "15";
+        String hours = "8AM - 9PM";
+        String clinicName = "A-";
+        Shift shift = new Shift(month,date,hours,clinicName);
+        assertEquals("Check name of Clinic", "A-", shift.getClinicName());
+    }
+
+
+
+
 }

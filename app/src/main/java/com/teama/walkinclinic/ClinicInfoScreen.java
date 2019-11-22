@@ -201,10 +201,11 @@ public class ClinicInfoScreen extends AppCompatActivity {
                                 }
                             });
                         }
-
-                        dataSnapshot.child("clinicAddress").getRef().setValue(clinicAddress);
+                        if(clinicAddress.equals("")){
+                        dataSnapshot.child("clinicAddress").getRef().setValue(clinicAddress);}
                         dataSnapshot.child("clinicOperatingHours").getRef().setValue(hoursOperating);
-                        dataSnapshot.child("phoneNumber").getRef().setValue(clinicPhoneNumber);
+                        if(clinicPhoneNumber.equals("")){
+                        dataSnapshot.child("phoneNumber").getRef().setValue(clinicPhoneNumber);}
                         dataSnapshot.child("clinicBitcoin").getRef().setValue(bitcoin);
                         dataSnapshot.child("clinicCredit").getRef().setValue(creditCard);
                         dataSnapshot.child("clinicDebit").getRef().setValue(debitCard);

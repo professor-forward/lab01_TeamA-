@@ -1,9 +1,8 @@
 # Lab01_TeamA-<br>
 
-# Dev 3 - Employee Functionality
-#### -Employee Functionality<br> - Add/Remove Services from Clinic<br>-Add Shifts to each Clinic<br>-(BONUS)Update Clinic Hours 
+# Dev 4 - Patient Functionality
+#### -Patient Functionality<br> 
 
-#### An employee account is needed in order to use employee functionality, create an employee account if you do not have one using the sign up page. If you would like, you can use this account, which I have created beforehand:<br><br>User: kingarthur<span></span>@gmail.com<br>Pass: kingarthur
 
 ### Collaborators
 
@@ -15,28 +14,23 @@ Keon<br>
 
 ### Repository
 
-**All changes for Dev 3 are in branch f/Deliverable 3 (Default Branch)**<br>
-https://github.com/professor-forward/lab01_TeamA- <br>
+**All changes for Dev 4 are in branch f/Deliverable 4 (Default Branch)**<br>
+ <br>
 
 ## Unit Tests
 **Unit Tests can be found here**<br> 
-https://github.com/professor-forward/lab01_TeamA-/blob/f/Deliverable3/app/src/test/java/com/teama/walkinclinic/ShiftTest.java
 
-https://github.com/professor-forward/lab01_TeamA-/blob/f/Deliverable3/app/src/test/java/com/teama/walkinclinic/ClinicTest.java
 
-2 Unit Tests were created.
 
-One Unit Test was created for the Clinic page
-One Unit Test was created for the Shift page
 
 
 
 ### CirlceCI Integration
-For our CircleCI integration, just like Deliverable 2, it was not possible for me to create the test using the repository in the professor forward organization.
+For our CircleCI integration, just like Deliverable 2/3, it was not possible for me to create the test using the repository in the professor forward organization.
 
 Instead I had copied the repository privately outside of the organization and ran the tests using that repository. 
 
-Here is a link to the repository for the Deliverable 3 unit tests: https://github.com/kprime21/Deliverable3CircleCI
+Here is a link to the repository for the Deliverable 4 unit tests: https://github.com/kprime21/Deliverable3CircleCI
 
 It contains all the code of our latest running model
 
@@ -46,14 +40,7 @@ Since the project is private, I had created a token in the API permissions on Ci
 [![CircleCI](https://circleci.com/gh/kprime21/Deliverable3CircleCI/tree/master.svg?style=svg&circle-token=e897a1232afb1475642595d665d8eaeb3fc908bc)](https://circleci.com/gh/kprime21/Deliverable3CircleCI/tree/master)
 
 ## Classes, Dev 3
-**Shift** - This is the Shift class that is used to instantiate objects of type Shift. A Shift has the hours and Clinic the employee works at<br>
-**Clinic** - This is the Clinic class that is used to instantiate Clinics that are created by the Employee<br>
-**ClinicInfoScreen** - **Create Clinics/Add Services to Clinicss** After Employee logs in, if he clicks on ManageClinics button he is taken to a page where he can create Clinic. Or **Update (BONUS)** a clinic, that is change it's working hours along with other info. If the info of a clinic is changed, it will have all its employees shifts deleted. **Employee can not leave Clinic info blank when creating a clinic, when updating a clinic employee must enter an existing clinic name and must have at least one payment type checked**<br>
-**ManageClinics** - At the ManageClinics screen, the employee can choose to click on View Clinics, to view all the current made Clinics. If he selects a clinic on the list he is then taken to a page where he can add the predefined services which were made by the admin to that specific clinic<br>
-**ClinicServiceScreen** - **Add/Remove services created by admin** At the ClinicServiceScreen, the employee can add services and remove services from that specific clinic. The Top listview represents services that are active in that specific clinic and the bottom listview represents services that are not active in the clinic. All you need to do is simply tap a service in either listview to make it move from one to the other<br>
-**PickAClinicScreen** - going back to the EmployeeScreen when he first logs in. If he clicks on Add Shifts button, he then is taken to another screen to pick a clinic. This screen holds a single listview for the employee to select, to which he will add shift hours to that clinic he selected<br>
-**WorkDaysScreen** - **Employee setting his Shift hours**, this screen is where the employee will choose his shift hours. He needs to first click on the calendar day, and then select a time that is in the time slot of the clinics operating hours (the clinics operating hours is displayed). He can only have one shift per day, but it can be at any clinic. **Employee must select a date on the calenderview first before entering and employee must also enter valid hours in between the time slot** <br>
-**ManageShiftsScreen** - **Employee can view his shift hours**, going back to the EmployeeScreen. If he clicks on the View Shifts button, he then is taken to a listview where he can view all his shifts. He can not interact with any of the shifts here as he does not need to (Implementation not required)
+
 
 
 ## Classes Dev1/Dev2
@@ -77,6 +64,14 @@ to a new activity that has a listview where he can currently see the name of all
 **ManageUsers** - if admin clicks on view all users button, he is taken 
 to a new activity that has a listview where he can currently see all the users. If he clicks on a user, a new activity, ManageUsersPopUp, is pushed onto the stack<br>
 **ManageUsersPopUp** - After clicking on a user, admin can see the users name and email address, here he can choose to delete the service. If he does, the intent is sent back through the information is sent back and is returned through the intent and is sent back to the ManageUsers activity, and the listview will be updated<br>
+**Shift** - This is the Shift class that is used to instantiate objects of type Shift. A Shift has the hours and Clinic the employee works at<br>
+**Clinic** - This is the Clinic class that is used to instantiate Clinics that are created by the Employee<br>
+**ClinicInfoScreen** - **Create Clinics/Add Services to Clinicss** After Employee logs in, if he clicks on ManageClinics button he is taken to a page where he can create Clinic. Or **Update (BONUS)** a clinic, that is change it's working hours along with other info. If the info of a clinic is changed, it will have all its employees shifts deleted. **Employee can not leave Clinic info blank when creating a clinic, when updating a clinic employee must enter an existing clinic name and must have at least one payment type checked**<br>
+**ManageClinics** - At the ManageClinics screen, the employee can choose to click on View Clinics, to view all the current made Clinics. If he selects a clinic on the list he is then taken to a page where he can add the predefined services which were made by the admin to that specific clinic<br>
+**ClinicServiceScreen** - **Add/Remove services created by admin** At the ClinicServiceScreen, the employee can add services and remove services from that specific clinic. The Top listview represents services that are active in that specific clinic and the bottom listview represents services that are not active in the clinic. All you need to do is simply tap a service in either listview to make it move from one to the other<br>
+**PickAClinicScreen** - going back to the EmployeeScreen when he first logs in. If he clicks on Add Shifts button, he then is taken to another screen to pick a clinic. This screen holds a single listview for the employee to select, to which he will add shift hours to that clinic he selected<br>
+**WorkDaysScreen** - **Employee setting his Shift hours**, this screen is where the employee will choose his shift hours. He needs to first click on the calendar day, and then select a time that is in the time slot of the clinics operating hours (the clinics operating hours is displayed). He can only have one shift per day, but it can be at any clinic. **Employee must select a date on the calenderview first before entering and employee must also enter valid hours in between the time slot** <br>
+**ManageShiftsScreen** - **Employee can view his shift hours**, going back to the EmployeeScreen. If he clicks on the View Shifts button, he then is taken to a listview where he can view all his shifts. He can not interact with any of the shifts here as he does not need to (Implementation not required)
 
 
 

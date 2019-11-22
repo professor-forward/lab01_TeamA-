@@ -183,6 +183,8 @@ public class ClinicInfoScreen extends AppCompatActivity {
                             FirebaseDatabase.getInstance().getReference("Shifts").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
                                     for(DataSnapshot ds: dataSnapshot.getChildren()){
                                         for(DataSnapshot ds2: ds.getChildren()){
                                             if(ds2.getValue(Shift.class).getClinicName().equals(edtClinicName.getText().toString())){
@@ -190,12 +192,7 @@ public class ClinicInfoScreen extends AppCompatActivity {
                                             }
                                         }
                                     }
-                                    dataSnapshot.child("clinicAddress").getRef().setValue(clinicAddress);
-                                    dataSnapshot.child("clinicOperatingHours").getRef().setValue(hoursOperating);
-                                    dataSnapshot.child("phoneNumber").getRef().setValue(clinicPhoneNumber);
-                                    dataSnapshot.child("clinicBitcoin").getRef().setValue(bitcoin);
-                                    dataSnapshot.child("clinicCredit").getRef().setValue(creditCard);
-                                    dataSnapshot.child("clinicDebit").getRef().setValue(debitCard);
+
                                 }
 
                                 @Override
@@ -205,7 +202,12 @@ public class ClinicInfoScreen extends AppCompatActivity {
                             });
                         }
 
-
+                        dataSnapshot.child("clinicAddress").getRef().setValue(clinicAddress);
+                        dataSnapshot.child("clinicOperatingHours").getRef().setValue(hoursOperating);
+                        dataSnapshot.child("phoneNumber").getRef().setValue(clinicPhoneNumber);
+                        dataSnapshot.child("clinicBitcoin").getRef().setValue(bitcoin);
+                        dataSnapshot.child("clinicCredit").getRef().setValue(creditCard);
+                        dataSnapshot.child("clinicDebit").getRef().setValue(debitCard);
 
 
 

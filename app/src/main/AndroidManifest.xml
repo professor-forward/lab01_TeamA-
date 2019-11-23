@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ReviewScreen"></activity>
+        <activity android:name=".AppointmentScreen" />
+        <activity android:name=".ClinicOptionsScreen" />
+        <activity android:name=".SelectClinicScreen" />
+        <activity android:name=".SelectServiceScreen" />
         <activity android:name=".ManageShiftsScreen" />
         <activity android:name=".PickAClinicScreen" />
         <activity android:name=".ManageClinics" />

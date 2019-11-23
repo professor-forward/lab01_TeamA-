@@ -32,7 +32,7 @@ public class PatientScreen extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference userPatient;
 
-
+    private Button SelectServiceBtn;
 
 
     @Override
@@ -44,10 +44,17 @@ public class PatientScreen extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         userPatient = database.getReference("Users/patient");
 
+        SelectServiceBtn = findViewById(R.id.btnToServiceScreen);
+
         final String uidpatient = getIntent().getExtras().getString("uid");
 
-
-
+        SelectServiceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent s = new Intent(getApplicationContext(), SelectServiceScreen.class);
+                startActivity(s);
+            }
+        });
         userPatient.child(uidpatient).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

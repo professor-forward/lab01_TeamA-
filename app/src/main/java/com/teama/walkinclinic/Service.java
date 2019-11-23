@@ -43,6 +43,11 @@ public class Service {
     // allows for the comparison on two services
     public boolean equals(Service other)
     {
+        if(other == null)
+        {
+            return false;
+        }
+
         if(name == null || pay == null || role == null)
         {
             return false;

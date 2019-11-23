@@ -1,13 +1,16 @@
 package com.teama.walkinclinic;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Clinic {
 
-    String clinicName;
-    String clinicAddress;
-    String clinicPhoneNumber;
-    String clinicOperatingHours;
+    private String clinicName;
+    private String clinicAddress;
+    private String clinicPhoneNumber;
+    private String clinicOperatingHours;
 
-
+    private ArrayList<Service> services;
 
     boolean clinicCredit;
     boolean clinicDebit;
@@ -24,10 +27,29 @@ public class Clinic {
         this.clinicDebit = clinicDebit;
         this.clinicBitcoin = clinicBitcoin;
 
-
+        services = new ArrayList<Service>();
         }
 
 
+        public void addService(Service service)
+        {
+            if(service == null)
+            {
+                return;
+            }
+
+            services.add(service);
+        }
+
+        public void removeService(Service service)
+        {
+            if(service == null)
+            {
+                return;
+            }
+
+            services.remove(service);
+        }
 
 
     public Clinic(){}
@@ -111,7 +133,7 @@ public class Clinic {
 
 
     public String toString(){
-        return this.clinicName + " located at " + this.clinicAddress;
+        return this.clinicName + ", Open Hours: " + this.clinicOperatingHours + ", Location: " + this.clinicAddress;
     }
 
 }

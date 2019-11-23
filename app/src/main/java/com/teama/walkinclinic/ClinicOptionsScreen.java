@@ -17,6 +17,9 @@ public class ClinicOptionsScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_options_screen);
 
+        appointmentBtn = findViewById(R.id.btnToAppointmentScreen);
+        reviewBtn = findViewById(R.id.btnToReviewScreen);
+
         appointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

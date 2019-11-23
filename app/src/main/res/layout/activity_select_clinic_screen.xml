@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/signupbackground"
     tools:context=".SelectClinicScreen">
 
     <ListView
-        android:id="@+id/listOfServices"
-        android:layout_width="409dp"
-        android:layout_height="657dp"
+        android:id="@+id/listOfClinics"
+        android:layout_width="307dp"
+        android:layout_height="531dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 </androidx.constraintlayout.widget.ConstraintLayout>

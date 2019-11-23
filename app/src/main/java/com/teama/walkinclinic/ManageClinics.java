@@ -72,7 +72,8 @@ public class ManageClinics extends AppCompatActivity {
 
                 /* I am starting the pop up this way so that it can send back information while removing itself from the activity stack. Otherwise,
                 I end up with a massive stack of ManageUsers and ManageUsersPopUp activities */
-                startActivityForResult(s,1);
+                //startActivityForResult(s,1);
+                startActivity(s);
             }
         });
 

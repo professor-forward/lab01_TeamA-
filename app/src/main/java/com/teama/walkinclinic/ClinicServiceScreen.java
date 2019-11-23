@@ -199,16 +199,26 @@ public class ClinicServiceScreen extends AppCompatActivity {
     // this function deletes services from the available services list view and places them in the active services list view
     private void addService(Service service)
     {
+        if(service == null)
+        {
+            return;
+        }
+
+        Log.d("CHECK","Service : " + service);
+
         boolean isFound = false;
         Service markedService = availableServices.get(0);
 
         for(Service s : availableServices)
         {
-            if(service.equals(s))
+            Log.d("CHECK","Check service in availableServices: " + s);
+
+            if (service.equals(s))
             {
                 Log.d("check", "matching service found");
                 isFound = true;
                 markedService = s;
+                break;
             }
         }
 
@@ -232,15 +242,21 @@ public class ClinicServiceScreen extends AppCompatActivity {
     // this function deletes services from the active services list view and places them in the available list view
     private void removeService(Service service)
     {
+        if(service == null)
+        {
+            return;
+        }
+
         boolean isFound = false;
         Service markedService = activeServices.get(0);
 
         for(Service s : activeServices)
         {
-            if(service.equals(s))
+            if (service.equals(s))
             {
                 isFound = true;
                 markedService = s;
+                break;
             }
         }
 

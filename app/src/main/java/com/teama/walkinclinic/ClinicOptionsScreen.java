@@ -11,6 +11,8 @@ public class ClinicOptionsScreen extends AppCompatActivity {
 
     private Button appointmentBtn;
     private Button reviewBtn;
+    String clinicName;
+    public static String CLINICNAMEKEY = "ClinicName";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,9 @@ public class ClinicOptionsScreen extends AppCompatActivity {
         reviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clinicName = getIntent().getStringExtra(SelectClinicScreen.CLINIC_NAME_EXTRA_KEY);
                 Intent s = new Intent(getApplicationContext(), ReviewScreen.class);
+                s.putExtra(CLINICNAMEKEY, clinicName);
                 startActivity(s);
             }
         });

@@ -11,6 +11,7 @@ public class Clinic {
     private String clinicOperatingHours;
 
     private ArrayList<Service> services;
+    private ArrayList<Review> reviews;
 
     boolean clinicCredit;
     boolean clinicDebit;
@@ -28,6 +29,7 @@ public class Clinic {
         this.clinicBitcoin = clinicBitcoin;
 
         services = new ArrayList<Service>();
+        reviews = new ArrayList<Review>();
         }
 
 

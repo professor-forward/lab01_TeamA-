@@ -3,22 +3,32 @@ package com.teama.walkinclinic;
 import android.media.Rating;
 
 public class Review {
-    Rating starRating;
+    float starRating;
     String clientComment;
+    String reviewuid;
 
-    public Review(Rating review, String comment){
+    public Review(float review, String comment, String uid){
         this.starRating = review;
         this.clientComment = comment;
+        this.reviewuid = uid;
     }
 
-    public Rating getStarRating() {
+    public void setReviewuid(String id){
+        this.reviewuid = id;
+    }
+
+    public String getReviewuid(){
+        return this.reviewuid;
+    }
+
+    public float getStarRating() {
         return starRating;
     }
     public String getClientComment() {
         return clientComment;
     }
 
-    public void setMonth(Rating rating) {
+    public void setMonth(float rating) {
         this.starRating = rating;
     }
     public void setDate(String comment ) { this.clientComment = comment; }

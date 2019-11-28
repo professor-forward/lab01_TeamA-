@@ -25,7 +25,9 @@ public class ClinicOptionsScreen extends AppCompatActivity {
         appointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clinicName = getIntent().getStringExtra(SelectClinicScreen.CLINIC_NAME_EXTRA_KEY);
                 Intent s = new Intent(getApplicationContext(), AppointmentScreen.class);
+                s.putExtra(CLINICNAMEKEY, clinicName);
                 startActivity(s);
             }
         });

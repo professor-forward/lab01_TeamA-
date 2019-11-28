@@ -41,6 +41,8 @@ public class SelectClinicScreen extends AppCompatActivity {
         clinicListView = findViewById(R.id.listOfClinics);
         clinicList = new ArrayList<Clinic>();
 
+        final String uidpatient = getIntent().getStringExtra("uidpatient");
+
         clinicListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -50,6 +52,7 @@ public class SelectClinicScreen extends AppCompatActivity {
 
                 Intent toClinicOptions = new Intent(getApplicationContext(),ClinicOptionsScreen.class);
                 toClinicOptions.putExtra(CLINIC_NAME_EXTRA_KEY,clinicName);
+                toClinicOptions.putExtra("uidpatient",uidpatient);
                 startActivity(toClinicOptions);
             }
         });

@@ -35,6 +35,8 @@ public class SelectServiceScreen extends AppCompatActivity {
         serviceListView = findViewById(R.id.listOfServices);
         serviceList = new ArrayList<Service>();
 
+        final String uidpatient = getIntent().getStringExtra("uidpatient");
+
         serviceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -44,6 +46,7 @@ public class SelectServiceScreen extends AppCompatActivity {
                 // go to the select clinic screen and pass the selected service as an extra with the intent object
                 Intent toSelectClinics = new Intent(getApplicationContext(),SelectClinicScreen.class);
                 toSelectClinics.putExtra(SERVICE_NAME_EXTRA_KEY,serviceName);
+                toSelectClinics.putExtra("uidpatient",uidpatient);
                 startActivity(toSelectClinics);
             }
         });

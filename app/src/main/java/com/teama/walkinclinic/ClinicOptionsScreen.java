@@ -21,6 +21,7 @@ public class ClinicOptionsScreen extends AppCompatActivity {
 
         appointmentBtn = findViewById(R.id.btnToAppointmentScreen);
         reviewBtn = findViewById(R.id.btnToReviewScreen);
+        final String uidpatient = getIntent().getStringExtra("uidpatient");
 
         appointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,6 +29,7 @@ public class ClinicOptionsScreen extends AppCompatActivity {
                 clinicName = getIntent().getStringExtra(SelectClinicScreen.CLINIC_NAME_EXTRA_KEY);
                 Intent s = new Intent(getApplicationContext(), AppointmentScreen.class);
                 s.putExtra(CLINICNAMEKEY, clinicName);
+                s.putExtra("uidpatient",uidpatient);
                 startActivity(s);
             }
         });

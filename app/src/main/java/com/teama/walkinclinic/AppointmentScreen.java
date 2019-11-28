@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -39,9 +41,12 @@ public class AppointmentScreen extends AppCompatActivity {
     TextView tvPickHour;
     Button btnSaveAppointmentTime;
 
+    String chosenAppointmentTime;
+
 
     FirebaseDatabase database;
     DatabaseReference appointmentclinics;
+
 
 
 
@@ -55,9 +60,10 @@ public class AppointmentScreen extends AppCompatActivity {
          database = FirebaseDatabase.getInstance();
          appointmentclinics = database.getReference("Clinics");
 
-         final String[] regularHours = new String[]{"8AM","9AM","10AM","11AM","12PM","1PM","2PM","3PM","4PM","5PM"};
+         final String uidpatient = getIntent().getStringExtra("uidpatient");
+         final String[] regularHours = new String[]{"8AM","9AM","10AM","11AM","12PM","1PM","2PM","3PM","4PM"};
          final String[] specialtyHours = new String[]{"10AM","11AM","12PM","1PM","2PM","3PM","4PM"};
-         final String[] emergencyHours = new String[]{"will die soon", "already dead", "not close to death"};
+         final String[] emergencyHours = new String[]{"minor emergency", "severe emergency", "immediate attention"};
          spCustomAppointmentHours = findViewById(R.id.spCustomAppointmentHours);
          spAppointmentQuarter = findViewById(R.id.spAppointmentQuarter);
          tvAppointment = findViewById(R.id.tvAppointment);
@@ -95,6 +101,31 @@ public class AppointmentScreen extends AppCompatActivity {
              @Override
              public void onCancelled(@NonNull DatabaseError databaseError) {
 
+             }
+         });
+
+         btnSaveAppointmentTime.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 chosenAppointmentTime = spCustomAppointmentHours.getSelectedItem().toString() + ":" + spAppointmentQuarter.getSelectedItem().toString();
+
+
+                 appointmentclinics.child(clinicName).child("Appointments").addListenerForSingleValueEvent(new ValueEventListener() {
+                     @Override
+                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                         if(dataSnapshot.child(chosenAppointmentTime).exists()){
+                             Toast.makeText(getApplicationContext(),"This time slot has already been booked", Toast.LENGTH_SHORT).show();
+                             return;
+                         }
+                         dataSnapshot.child(chosenAppointmentTime).getRef().setValue(uidpatient);
+                         Toast.makeText(getApplicationContext(),"You have successfully booked this time slot", Toast.LENGTH_SHORT).show();
+                     }
+
+                     @Override
+                     public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                     }
+                 });
              }
          });
 

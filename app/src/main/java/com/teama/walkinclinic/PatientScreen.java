@@ -52,6 +52,7 @@ public class PatientScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent s = new Intent(getApplicationContext(), SelectServiceScreen.class);
+                s.putExtra("uidpatient", uidpatient);
                 startActivity(s);
             }
         });

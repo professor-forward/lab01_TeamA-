@@ -7,11 +7,13 @@ public class Appointment {
     String hourInterval;
     String quarterInterval;
     Clinic clinicForAppointment;
+    Patient patientForAppointment;
 
-    public Appointment(String hourInterval, String quarterInterval, Clinic clinicForAppointment){
+    public Appointment(String hourInterval, String quarterInterval, Clinic clinicForAppointment, Patient patientForAppointment){
         this.hourInterval= hourInterval;
         this.quarterInterval = quarterInterval;
         this.clinicForAppointment = clinicForAppointment;
+        this.patientForAppointment = patientForAppointment;
     }
     public String getHourInterval() {
         return hourInterval;
@@ -29,13 +31,7 @@ public class Appointment {
         this.quarterInterval = quarterInterval;
     }
 
-    public Clinic getClinicForAppointment() {
-        return clinicForAppointment;
-    }
 
-    public void setClinicForAppointment(Clinic clinicForAppointment) {
-        this.clinicForAppointment = clinicForAppointment;
-    }
 
     @Override
     public String toString() {

@@ -178,31 +178,36 @@
 
     <Button
         android:id="@+id/btnViewAllClinic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="102dp"
+        android:layout_height="55dp"
         android:layout_marginStart="248dp"
         android:layout_marginLeft="248dp"
-        android:layout_marginTop="508dp"
+        android:layout_marginTop="468dp"
+        android:background="@drawable/colourbutton"
         android:text="View Clinics"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnUpdateClinicInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginLeft="116dp"
-        android:layout_marginTop="508dp"
+        android:layout_width="97dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginLeft="132dp"
+        android:layout_marginTop="468dp"
+        android:background="@drawable/colourbutton"
         android:text="Update Clinic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnSaveClinicInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="508dp"
+        android:layout_width="100dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="468dp"
+        android:background="@drawable/colourbutton"
         android:text="Save Clinic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

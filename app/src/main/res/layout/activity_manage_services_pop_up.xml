@@ -35,9 +35,10 @@
         android:id="@+id/btnDeleteService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="452dp"
-        android:layout_marginEnd="172dp"
-        android:layout_marginRight="172dp"
+        android:layout_marginTop="440dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
+        android:background="@drawable/colourbutton"
         android:text="Delete Service"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

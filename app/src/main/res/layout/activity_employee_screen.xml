@@ -9,16 +9,17 @@
 
     <TextView
         android:id="@+id/tvWelcomeEmployee"
-        android:layout_width="325dp"
-        android:layout_height="38dp"
+        android:layout_width="295dp"
+        android:layout_height="149dp"
         android:gravity="center"
         android:text="Employee Screen "
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintVertical_bias="0.038" />
 
     <Button
         android:id="@+id/btnToInfo"

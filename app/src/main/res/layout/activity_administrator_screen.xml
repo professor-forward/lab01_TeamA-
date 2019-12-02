@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/tvEnterAdministrator"
-        android:layout_width="325dp"
-        android:layout_height="38dp"
+        android:layout_width="304dp"
+        android:layout_height="93dp"
         android:gravity="center"
         android:text="Welcome Administrator"
         android:textSize="24sp"

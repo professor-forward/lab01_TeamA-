@@ -54,13 +54,13 @@ public class ManageServices extends AppCompatActivity {
                     servicesList.add(service);
 
                 }
-                ArrayAdapter <Service>servicesAdapter = new ArrayAdapter<Service>(getApplicationContext(), android.R.layout.simple_list_item_1, servicesList);
+                ArrayAdapter <Service>servicesAdapter = new <Service>ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, servicesList);
                 lvServices.setAdapter(servicesAdapter);
             }
 
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError)    {
 
             }
         });
@@ -83,6 +83,7 @@ public class ManageServices extends AppCompatActivity {
 
 
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){

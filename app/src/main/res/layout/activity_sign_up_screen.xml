@@ -58,7 +58,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Enter Last Name"
         android:inputType="textPersonName"
@@ -67,6 +67,7 @@
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/edtEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
 
@@ -80,7 +81,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="12dp"
         android:ems="10"
         android:hint="Enter Email Address"
         android:inputType="textEmailAddress"
@@ -89,6 +90,7 @@
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/edtPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
 
@@ -140,7 +142,7 @@
         android:id="@+id/textView4"
         android:layout_width="103dp"
         android:layout_height="137dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="36dp"
         android:text="A-"
         android:textColor="@color/colorAccent"
         android:textSize="100sp"

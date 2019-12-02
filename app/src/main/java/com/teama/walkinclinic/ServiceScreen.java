@@ -117,7 +117,7 @@ public class ServiceScreen extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(serviceName).exists()){
                            dataSnapshot.child(serviceName).child("pay").getRef().setValue(servicePay);
-                           dataSnapshot.child(serviceRole).child("role").getRef().setValue(serviceRole);
+                           dataSnapshot.child(serviceName).child("role").getRef().setValue(serviceRole);
                             Toast.makeText(getApplicationContext(),"The Service pay and role of " + serviceName + " has been updated to " + servicePay + " and " + serviceRole, Toast.LENGTH_LONG).show();
                         }
                         else{

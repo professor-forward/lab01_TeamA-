@@ -10,8 +10,8 @@
 
     <Button
         android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="260dp"
+        android:layout_height="52dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/colourbutton"
         android:text="Save Services"

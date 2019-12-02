@@ -2,15 +2,16 @@
 
 # Dev 4 - Patient Functionality
 #### -Patient Functionality<br> 
+### Patient Test Log In<br> username: patient<span></span>@gmail.com<br>password: patient
 
 
 ### Collaborators
 
-Kirjan<br>
-Devon<br>
-Bryson<br>
-Kene<br>
-Keon<br>
+Kirjan 300025125<br>
+Devon 300056174<br>
+Bryson 300078043<br>
+Kene 8607224<br>
+Keon 300027974<br>
 
 ### Repository
 
@@ -19,8 +20,14 @@ Keon<br>
 
 ## Unit Tests
 **Unit Tests can be found here**<br> 
+https://github.com/professor-forward/lab01_TeamA-/tree/f/Deliverable4/app/src/test/java/com/teama/walkinclinic
 
-
+**The unit tests we had chosen to do, were for:**<br>
+-Creating a User that is an Employee or Patient<br>
+-Creating a Service that the Patient will want to book an appointment for for when finding a Clinic<br>
+-The Employee creating his Shift at a Clinic that he will be working at, in which the Patient will be booking an appointment for or writing a review<br>
+-Creating a Clinic that the Patient will book an Appointment or Write a Review for<br>
+-The Patient writing a Review for a Clinic, in which he can choose to show that he did not like the Clinic, A service, or an Employee
 
 
 
@@ -30,20 +37,28 @@ For our CircleCI integration, just like Deliverable 2/3, it was not possible for
 
 Instead I had copied the repository privately outside of the organization and ran the tests using that repository. 
 
-Here is a link to the repository for the Deliverable 4 unit tests: https://github.com/kprime21/Deliverable3CircleCI
+Here is a link to the repository for the Deliverable 4 unit tests: https://github.com/kprime21/Deliverable4CircleCI
 
 It contains all the code of our latest running model
 
 Since the project is private, I had created a token in the API permissions on CircleCI to be able to pass over the **Passed** result as you can see below. 
 
 **The results of the Unit tests**  <br>
-[![CircleCI](https://circleci.com/gh/kprime21/Deliverable3CircleCI/tree/master.svg?style=svg&circle-token=e897a1232afb1475642595d665d8eaeb3fc908bc)](https://circleci.com/gh/kprime21/Deliverable3CircleCI/tree/master)
+[![CircleCI](https://circleci.com/gh/kprime21/Deliverable4CircleCI/tree/master.svg?style=svg&circle-token=90b62aeb960330eafb495a58693276ecca329dd6)](https://circleci.com/gh/kprime21/Deliverable4CircleCI/tree/master)
 
-## Classes, Dev 3
+## Classes, Dev 4
+**SelectServiceScreen** - After Patient logs in, he can search for a clinic by first selecting the active services that are offered by all available Clinics<br>
+**SelectClinicScreen** - After he selects one of the available services, he then has a list view of all the available clinics that are offering that specific service<br>
+**ClinicOptionsScreen** - After he has selected the Clinic, he can either book an appointment or write a review/rating for that Clinic<br>
+**AppointmentScreen** - This screen is where the Patient will book an appointment, in the time slot for the Clinic he has chosen. Instead of setting a wait timer, I had<br>
+decided to make it so that appointments are available in 15 minute intervals and that no two appointments can overlap (Unless it is for an emergency clinic, as it would be pointless
+to have any sort of timer as the patient could be in critical condition)<br>
+**ReviewScreen** - This screen is where the Patient will review the clinic by typing a Review message and Review rating (out of 5 stars), the patient can choose to 
+ommit his message and only leave a star rating<br>
+**Review** - This class is what is used to keep track of every Patients review<br>
 
 
-
-## Classes Dev1/Dev2
+## Classes Dev1/Dev2/Dev3
 **User** - abstract class for the user roles<br>
 **Employee** - specialization of User<br>
 **Patient** - specialization of User<br>
@@ -78,10 +93,8 @@ to a new activity that has a listview where he can currently see all the users. 
 
 
 ## Explanation
->1. Once the employee logs in with an account that he had signed up with
->2. He can then choose if he wants to manage clinics, view his shifts, or add a shift for himself. But he needs to add a clinic first if none exist
->3. If he clicks on manage clinics he is taken to a new activitiy where he can create a clinic, with a name, address, phone number, payment types, predefined operating hours.
->4. He can also Update a clinics info, but must type the name of the Clinic that he wants to update. If he updates a clinic, this will delete all the shifts that employees have for that clinic
->5. He can view all the clinics, and is taken to a list view, here he can select a clinic by simply tapping it, and then add the services he wants to that clinic
->6. The employee can that add shifts, by going back to the EmployeeScreen or employee login page. Here he can click Add Shift, select a clinic and then first click on a date on the calendar view and then enter valid hours
->7. The employee can then view all his respective shifts, by going back to EmployeeScreen and clicking on View Shifts. This will bring him to a listview where he can view all his shifts
+>1. Once the patient logs in with an account that he had signed up with
+>2. He then searches for his Clinic, by first selecting the service he is looking for and then he sees a list of Clinics that will offer that Service and selects that Clinic
+>3. He can then either book an appointment or review a Clinic
+>4. If he selects to book an appointment, he is taken to a screen where there will be two spinners. One spinner has the Clinics hours, and the hour is generated depending on that Clinic's operating hours. There is also a 15 minute interval for each appointment. If the time is already booked, the patient will get a toast message telling him to pick another time. Rather than making it so that there is a wait time, each patient has their own appointment time
+>5. If he selects to review a Clinic, he is taken to a screen where there is a Rating widget and a text box. The patient can give the Clinic a rating out of 5 stars and he can, if he chooses to include a rating message

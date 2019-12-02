@@ -13,6 +13,8 @@ public class Review {
         this.reviewuid = uid;
     }
 
+    public Review(){};
+
     public void setReviewuid(String id){
         this.reviewuid = id;
     }

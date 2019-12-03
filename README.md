@@ -10,8 +10,8 @@
 Kirjan 300025125<br>
 Devon 300056174<br>
 Bryson 300078043<br>
-Kene 8607224<br>
-Keon 300027974<br>
+Kene 300027974<br>
+Keon 8607224<br>
 
 ### Repository
 
@@ -22,7 +22,7 @@ Keon 300027974<br>
 **Unit Tests can be found here**<br> 
 https://github.com/professor-forward/lab01_TeamA-/tree/f/Deliverable4/app/src/test/java/com/teama/walkinclinic
 
-**The unit tests we had chosen to do, were for:**<br>
+**The 10 unit tests we had chosen to do, are related to:**<br>
 -Creating a User that is an Employee or Patient<br>
 -Creating a Service that the Patient will want to book an appointment for for when finding a Clinic<br>
 -The Employee creating his Shift at a Clinic that he will be working at, in which the Patient will be booking an appointment for or writing a review<br>
